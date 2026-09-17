@@ -1,0 +1,1262 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Real Estate AI Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAF7F2;
+    --surface: #FFFFFF;
+    --text: #2C2C2C;
+    --text-60: rgba(44,44,44,.64);
+    --text-45: rgba(44,44,44,.46);
+    --text-30: rgba(44,44,44,.30);
+    --line: rgba(44,44,44,.09);
+    --line-strong: rgba(44,44,44,.16);
+
+    --primary: #C4623A;
+    --primary-strong: #A8502E;
+    --primary-soft: rgba(196,98,58,.10);
+    --primary-line: rgba(196,98,58,.28);
+
+    --accent: #B8842A;
+    --accent-soft: rgba(184,132,42,.12);
+    --accent-line: rgba(184,132,42,.32);
+
+    --code-bg: #211B16;
+    --code-ink: #F1E9DD;
+    --code-line: rgba(241,233,221,.12);
+
+    --shadow-sm: 0 1px 2px rgba(44,44,44,.05), 0 3px 10px rgba(44,44,44,.04);
+    --radius-lg: 20px;
+    --radius-md: 14px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #1B1A18;
+      --surface: #252320;
+      --text: #F0EDE8;
+      --text-60: rgba(240,237,232,.66);
+      --text-45: rgba(240,237,232,.46);
+      --text-30: rgba(240,237,232,.28);
+      --line: rgba(240,237,232,.10);
+      --line-strong: rgba(240,237,232,.18);
+
+      --primary: #E2825C;
+      --primary-strong: #EF9A76;
+      --primary-soft: rgba(226,130,92,.14);
+      --primary-line: rgba(226,130,92,.34);
+
+      --accent: #E0AC52;
+      --accent-soft: rgba(224,172,82,.14);
+      --accent-line: rgba(224,172,82,.34);
+
+      --code-bg: #14110D;
+      --code-ink: #EEE6DA;
+      --code-line: rgba(238,230,218,.10);
+
+      --shadow-sm: 0 1px 2px rgba(0,0,0,.3), 0 3px 12px rgba(0,0,0,.25);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #1B1A18;
+    --surface: #252320;
+    --text: #F0EDE8;
+    --text-60: rgba(240,237,232,.66);
+    --text-45: rgba(240,237,232,.46);
+    --text-30: rgba(240,237,232,.28);
+    --line: rgba(240,237,232,.10);
+    --line-strong: rgba(240,237,232,.18);
+
+    --primary: #E2825C;
+    --primary-strong: #EF9A76;
+    --primary-soft: rgba(226,130,92,.14);
+    --primary-line: rgba(226,130,92,.34);
+
+    --accent: #E0AC52;
+    --accent-soft: rgba(224,172,82,.14);
+    --accent-line: rgba(224,172,82,.34);
+
+    --code-bg: #14110D;
+    --code-ink: #EEE6DA;
+    --code-line: rgba(238,230,218,.10);
+
+    --shadow-sm: 0 1px 2px rgba(0,0,0,.3), 0 3px 12px rgba(0,0,0,.25);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { font-family: "DM Serif Display", Georgia, serif; font-weight: 400; text-wrap: balance; margin: 0; }
+  p { margin: 0; }
+  a { color: inherit; }
+  button { font-family: inherit; }
+  ul, ol { margin: 0; padding-left: 1.25em; }
+  li { margin-bottom: 6px; }
+  li:last-child { margin-bottom: 0; }
+  ::selection { background: var(--primary-soft); }
+
+  .wrap { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+
+  .eyebrow {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--primary);
+  }
+
+  /* Header */
+  header.site {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .header-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 13px 24px;
+    display: flex;
+    align-items: center;
+    gap: 11px;
+  }
+  .bulb { width: 25px; height: 25px; flex: none; }
+  .brand-name { font-family: "DM Serif Display", serif; font-size: 1.05rem; color: var(--text); }
+  .brand-sub { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-45); margin-top: 1px; }
+
+  .toc {
+    margin-left: auto;
+    display: flex;
+    gap: 4px;
+  }
+  .toc a {
+    font-size: 0.74rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--text-45);
+    padding: 6px 9px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .toc a:hover { color: var(--primary); background: var(--primary-soft); }
+
+  /* Hero / Part 1 */
+  .hero { padding: 52px 0 8px; }
+  .hero h1 {
+    font-size: clamp(2rem, 4.6vw, 3rem);
+    line-height: 1.14;
+    margin-top: 12px;
+  }
+  .hero h1 em { color: var(--primary); font-style: italic; }
+  .hero p.lede {
+    max-width: 620px;
+    font-size: 1.08rem;
+    color: var(--text-60);
+    margin-top: 18px;
+  }
+
+  .learn-list {
+    margin-top: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+  }
+  .learn-list .row { display: flex; align-items: flex-start; gap: 10px; font-size: 0.95rem; color: var(--text-60); }
+  .learn-list svg { width: 16px; height: 16px; color: var(--primary); flex: none; margin-top: 3px; }
+
+  .section-label {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin: 50px 0 6px;
+    scroll-margin-top: 70px;
+  }
+  .section-label .num { font-family: "DM Serif Display", serif; color: var(--primary); font-size: 1rem; }
+  .section-label h2 { font-size: 1.5rem; }
+  .section-label .phase-tag {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-soft);
+    border: 1px solid var(--accent-line);
+    padding: 3px 10px;
+    border-radius: 999px;
+    margin-left: 4px;
+  }
+  .section-intro { font-size: 0.98rem; color: var(--text-60); margin-top: 10px; max-width: 640px; }
+
+  .phase-grid {
+    margin-top: 22px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .phase-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    padding: 24px 24px 22px;
+  }
+  .phase-num {
+    font-family: "DM Serif Display", serif;
+    font-size: 2.7rem;
+    line-height: 1;
+    color: var(--primary);
+    font-variant-numeric: tabular-nums;
+  }
+  .phase-card h3 { font-size: 1.14rem; margin-top: 10px; }
+  .phase-card p { font-size: 0.92rem; color: var(--text-60); margin-top: 10px; }
+
+  .principle {
+    margin: 34px 0 8px;
+    background: var(--primary-soft);
+    border: 1px solid var(--primary-line);
+    border-radius: var(--radius-lg);
+    padding: 28px 30px;
+  }
+  .principle p.statement {
+    margin: 0;
+    font-family: "DM Serif Display", serif;
+    font-style: italic;
+    font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+    color: var(--text);
+    line-height: 1.35;
+  }
+  .principle p.sub {
+    margin-top: 14px;
+    font-size: 0.95rem;
+    color: var(--text-60);
+  }
+
+  /* Part 2 nav */
+  .fn-nav {
+    margin: 8px 0 26px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .fn-nav a {
+    font-size: 0.82rem;
+    font-weight: 500;
+    text-decoration: none;
+    color: var(--text-60);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    padding: 7px 13px;
+    border-radius: 999px;
+  }
+  .fn-nav a:hover { border-color: var(--primary); color: var(--primary); }
+
+  /* Function accordion */
+  .functions { display: flex; flex-direction: column; gap: 14px; margin-bottom: 8px; }
+
+  .fn-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    scroll-margin-top: 76px;
+    overflow: hidden;
+  }
+  .fn-toggle {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 22px 26px;
+    cursor: pointer;
+    color: var(--text);
+  }
+  .fn-toggle:focus-visible { outline: 2px solid var(--primary); outline-offset: -2px; }
+  .fn-idx { font-family: "DM Serif Display", serif; font-size: 1.6rem; color: var(--primary); flex: none; width: 34px; }
+  .fn-heading { flex: 1; min-width: 0; }
+  .fn-heading h2 { font-size: 1.3rem; }
+  .fn-heading p { color: var(--text-60); font-size: 0.92rem; margin-top: 4px; }
+  .chevron { flex: none; width: 20px; height: 20px; color: var(--text-30); transition: transform .2s ease; }
+  .fn-card[data-open="true"] .chevron { transform: rotate(180deg); }
+
+  .fn-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .25s ease; }
+  .fn-card[data-open="true"] .fn-body { grid-template-rows: 1fr; }
+  .fn-body-inner { overflow: hidden; }
+  .fn-content { padding: 2px 26px 28px; display: flex; flex-direction: column; gap: 24px; }
+
+  .overview-text { font-size: 0.98rem; color: var(--text-60); border-top: 1px solid var(--line); padding-top: 20px; }
+
+  .level-block .level-head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  .level-chip {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 999px;
+    flex: none;
+  }
+  .level-block.l1 .level-chip { color: var(--primary); background: var(--primary-soft); border: 1px solid var(--primary-line); }
+  .level-block.l2 .level-chip { color: var(--accent); background: var(--accent-soft); border: 1px solid var(--accent-line); }
+  .level-block h3 { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 1.02rem; font-weight: 700; }
+  .level-block h3 .parens { font-weight: 500; color: var(--text-45); }
+
+  .code-block {
+    margin-top: 14px;
+    background: var(--code-bg);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid var(--code-line);
+  }
+  .code-block-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 9px 14px;
+    border-bottom: 1px solid var(--code-line);
+  }
+  .code-block-head span { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(241,233,221,.5); }
+  .copy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(241,233,221,.08);
+    color: var(--code-ink);
+    border: 1px solid rgba(241,233,221,.16);
+    font-size: 0.76rem;
+    font-weight: 600;
+    padding: 5px 11px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background .15s;
+  }
+  .copy-btn:hover { background: rgba(241,233,221,.16); }
+  .copy-btn svg { width: 13px; height: 13px; }
+  .copy-btn.copied { color: #9BDCB0; border-color: rgba(155,220,176,.4); }
+
+  pre.prompt { margin: 0; padding: 16px 18px 18px; overflow-x: auto; }
+  pre.prompt code {
+    font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.82rem;
+    line-height: 1.6;
+    color: var(--code-ink);
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  .benefit {
+    margin-top: 12px;
+    font-size: 0.88rem;
+    color: var(--text-60);
+    padding-left: 14px;
+    border-left: 2px solid var(--primary-line);
+  }
+  .benefit b { color: var(--text); font-weight: 600; }
+
+  /* Terminology (Part 3) */
+  .term-list { margin-top: 22px; display: flex; flex-direction: column; gap: 14px; }
+  .term-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    padding: 18px 20px;
+  }
+  .term-card h4 { font-family: -apple-system, sans-serif; font-size: 0.98rem; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  .term-card .means { font-size: 0.88rem; color: var(--text-60); margin-bottom: 12px; }
+  .term-rows { display: flex; flex-direction: column; gap: 6px; }
+  .term-row { display: flex; gap: 10px; font-size: 0.86rem; }
+  .term-row .tool { flex: none; width: 108px; font-weight: 600; color: var(--primary); }
+  .term-row .val { color: var(--text-60); }
+
+  .options-grid { margin-top: 22px; display: flex; flex-direction: column; gap: 14px; }
+  .option-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    padding: 20px 22px;
+  }
+  .option-card h4 { font-family: "DM Serif Display", serif; font-weight: 400; font-size: 1.08rem; margin-bottom: 8px; }
+  .option-card ul { font-size: 0.9rem; color: var(--text-60); }
+  .option-card .best-for { margin-top: 10px; font-size: 0.85rem; color: var(--text-45); }
+  .option-card .best-for b { color: var(--text-60); font-weight: 600; }
+
+  .quickref {
+    margin-top: 22px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .quickref .row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px; font-size: 0.88rem; }
+  .quickref .who { font-weight: 700; flex: none; }
+  .quickref .path {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 0.8rem;
+    color: var(--text-60);
+    background: var(--bg);
+    border: 1px solid var(--line-strong);
+    padding: 2px 8px;
+    border-radius: 6px;
+  }
+
+  /* Connectors (Part 4) */
+  .flow {
+    margin-top: 22px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 22px 24px;
+  }
+  .flow-title { font-size: 0.84rem; font-weight: 700; color: var(--text-60); margin-bottom: 14px; }
+  .flow-steps { display: flex; flex-direction: column; gap: 10px; }
+  .flow-step { display: flex; align-items: flex-start; gap: 12px; font-size: 0.9rem; color: var(--text-60); }
+  .flow-step .n {
+    flex: none; width: 22px; height: 22px; border-radius: 50%;
+    background: var(--primary); color: #fff; font-size: 0.72rem; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .connector-grid { margin-top: 22px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .connector-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    padding: 18px 20px;
+  }
+  .connector-card h4 { font-family: -apple-system, sans-serif; font-weight: 700; font-size: 0.96rem; margin-bottom: 8px; }
+  .connector-card p { font-size: 0.85rem; color: var(--text-60); margin-bottom: 6px; }
+  .connector-card p b { color: var(--text); font-weight: 600; }
+
+  .steplist { margin-top: 22px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .steplist-col h4 { font-size: 0.94rem; font-family: -apple-system, sans-serif; font-weight: 700; margin-bottom: 8px; }
+  .steplist-col ol { font-size: 0.88rem; color: var(--text-60); padding-left: 1.1em; }
+  .steplist-col .path { font-family: "JetBrains Mono", monospace; font-size: 0.82rem; color: var(--text-60); }
+
+  .start-card {
+    margin-top: 22px;
+    background: var(--accent-soft);
+    border: 1px solid var(--accent-line);
+    border-radius: var(--radius-lg);
+    padding: 20px 22px;
+  }
+  .start-card p.lead { font-size: 0.92rem; color: var(--text-60); margin-bottom: 12px; }
+  .start-card ol { font-size: 0.92rem; color: var(--text); padding-left: 1.2em; }
+  .start-card p.after { margin-top: 12px; font-size: 0.88rem; color: var(--text-60); }
+
+  /* Templates (Part 5) */
+  .template-card {
+    margin-top: 22px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 24px 26px;
+  }
+  .template-card h3 { font-size: 1.1rem; margin-bottom: 4px; }
+  .template-card > p.hint { font-size: 0.85rem; color: var(--text-45); margin-bottom: 18px; }
+
+  .field { margin-bottom: 14px; }
+  .field:last-child { margin-bottom: 0; }
+  .field label { display: block; font-size: 0.82rem; font-weight: 600; color: var(--text-60); margin-bottom: 5px; }
+  .field textarea {
+    width: 100%;
+    resize: vertical;
+    min-height: 58px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--text);
+    background: var(--bg);
+    border: 1px solid var(--line-strong);
+    border-radius: 10px;
+    padding: 10px 12px;
+  }
+  .field textarea:focus { outline: none; border-color: var(--primary); }
+  .field textarea::placeholder { color: var(--text-30); }
+
+  .preview-box { margin-top: 16px; }
+
+  /* Download (Part 6) */
+  .download-card {
+    margin: 22px 0 60px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 30px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+  .download-card p { font-size: 0.92rem; color: var(--text-60); max-width: 420px; }
+  .download-card p b { color: var(--text); font-weight: 600; }
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--primary);
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.92rem;
+    border: none;
+    padding: 13px 22px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background .15s;
+    white-space: nowrap;
+  }
+  .btn-primary:hover { background: var(--primary-strong); }
+  .btn-primary svg { width: 16px; height: 16px; }
+
+  footer.site { border-top: 1px solid var(--line); padding: 30px 0 46px; }
+  footer.site p { font-size: 0.85rem; color: var(--text-45); }
+  footer.site .updated { font-weight: 600; color: var(--text-60); margin-bottom: 6px; }
+
+  @media (max-width: 640px) {
+    .phase-grid { grid-template-columns: 1fr; }
+    .connector-grid { grid-template-columns: 1fr; }
+    .steplist { grid-template-columns: 1fr; }
+    .fn-toggle { padding: 18px 18px; gap: 12px; }
+    .fn-content { padding: 2px 18px 24px; }
+    .hero { padding: 40px 0 6px; }
+    .download-card { flex-direction: column; align-items: flex-start; padding: 26px 22px; }
+    .btn-primary { width: 100%; justify-content: center; }
+    .toc { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="header-inner">
+    <svg class="bulb" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="16" cy="13" r="9" fill="var(--primary)"/>
+      <rect x="13" y="18" width="6" height="12" rx="2" fill="var(--primary)"/>
+      <path d="M16 2.5V0.5M25 6.5L26.5 5M7 6.5L5.5 5" stroke="var(--primary)" stroke-width="1.6" stroke-linecap="round"/>
+    </svg>
+    <div>
+      <div class="brand-name">Real Estate AI Guide</div>
+      <div class="brand-sub">Framework to Implementation</div>
+    </div>
+    <nav class="toc" aria-label="Guide sections">
+      <a href="#framework">Framework</a>
+      <a href="#functions-top">Functions</a>
+      <a href="#save">Save</a>
+      <a href="#connect">Connect</a>
+      <a href="#build">Build</a>
+      <a href="#download">Download</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- PART 1: FRAMEWORK -->
+  <section class="hero" id="framework">
+    <div class="eyebrow">Part 1 — The Framework</div>
+    <h1>Stop collecting AI tips.<br><em>Build a system instead.</em></h1>
+    <p class="lede">This guide teaches you how to identify repetitive tasks in your real estate business, turn them into AI prompts, and integrate them into your daily workflow. By the end, you'll have multiple AI-powered systems handling routine work so you can focus on client relationships.</p>
+
+    <div class="learn-list">
+      <div class="row"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5L8 14.5L16 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Turn a repetitive task into a working AI prompt</div>
+      <div class="row"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5L8 14.5L16 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Save that prompt so you're never rewriting it from scratch</div>
+      <div class="row"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5L8 14.5L16 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Connect it to tools you already use — Gmail, Drive, Calendar</div>
+      <div class="row"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5L8 14.5L16 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Build your own version for tasks beyond the four examples here</div>
+    </div>
+  </section>
+
+  <div class="section-label"><span class="num">01</span><h2>The 4-Phase Method</h2></div>
+  <div class="phase-grid">
+    <div class="phase-card">
+      <div class="phase-num">01</div>
+      <h3>Pick Your Task</h3>
+      <p>Choose one task you do repeatedly that takes time and follows a clear pattern.</p>
+    </div>
+    <div class="phase-card">
+      <div class="phase-num">02</div>
+      <h3>Map Your Workflow</h3>
+      <p>Document exactly how you do it: your input, process, voice, constraints, and quality standards.</p>
+    </div>
+    <div class="phase-card">
+      <div class="phase-num">03</div>
+      <h3>Build Your Prompt</h3>
+      <p>Turn your workflow into clear instructions for AI.</p>
+    </div>
+    <div class="phase-card">
+      <div class="phase-num">04</div>
+      <h3>Test and Refine</h3>
+      <p>Use your prompt with real data. Adjust until it works. Use it every time you need that task done.</p>
+    </div>
+  </div>
+
+  <div class="principle">
+    <p class="statement">You can't automate what you haven't clarified.</p>
+    <p class="sub">The examples below show what's possible. Your job is to adapt them to your voice and market.</p>
+  </div>
+
+  <!-- PART 2: FUNCTIONS -->
+  <div class="section-label" id="functions-top"><span class="num">02</span><h2>Real Estate Functions</h2></div>
+  <p class="section-intro">Four functions where agents get the fastest return on AI. Each one shows a Level 1 prompt you can use today and a Level 2 template you build once and reuse.</p>
+  <nav class="fn-nav" aria-label="Jump to function">
+    <a href="#marketing">Marketing &amp; Listing Promotion</a>
+    <a href="#leads">Lead Management &amp; Nurturing</a>
+    <a href="#communication">Client Communication</a>
+    <a href="#prospecting">Prospecting &amp; Lead Generation</a>
+  </nav>
+
+  <main class="functions" id="functions"></main>
+
+  <!-- PART 3: PHASE 5 -->
+  <div class="section-label" id="save"><span class="num">03</span><h2>Save Your Prompt</h2><span class="phase-tag">Phase 5</span></div>
+  <p class="section-intro">Once you have a working prompt, you need to save it somewhere you can use it repeatedly without re-typing it.</p>
+
+  <div id="terminology" class="term-list"></div>
+
+  <div id="save-options" class="options-grid"></div>
+
+  <div class="quickref" id="quickref"></div>
+
+  <!-- PART 4: PHASE 6 -->
+  <div class="section-label" id="connect"><span class="num">04</span><h2>Connect Your Tools</h2><span class="phase-tag">Phase 6</span></div>
+  <p class="section-intro">Once your prompts are trained and working, the next step is connecting them to your actual workflow. This is where automation gets powerful.</p>
+  <p class="section-intro" style="margin-top:14px">A connector is a link between your AI tool and another application (like Gmail, Google Drive, Canva, etc.). Instead of manually copying information, the connector pulls data from your tools, sends it to AI for processing, and puts the results back where you need them.</p>
+
+  <div class="flow">
+    <div class="flow-title">Example — Gmail Connector with Claude</div>
+    <div class="flow-steps">
+      <div class="flow-step"><span class="n">1</span>New email arrives in your inbox</div>
+      <div class="flow-step"><span class="n">2</span>Gmail connector pulls it to Claude</div>
+      <div class="flow-step"><span class="n">3</span>Claude processes it using your trained prompt</div>
+      <div class="flow-step"><span class="n">4</span>Result goes back to Gmail — auto-labels, auto-responds, etc.</div>
+    </div>
+  </div>
+
+  <div id="connectors" class="connector-grid"></div>
+
+  <div class="steplist">
+    <div class="steplist-col">
+      <h4>How to Add Connectors — In Claude</h4>
+      <ol>
+        <li>Go to Settings &gt; Connectors (or "Connected Apps")</li>
+        <li>Browse available connectors</li>
+        <li>Click the tool you want to connect</li>
+        <li>Follow the authorization steps</li>
+        <li>Once connected, your prompts can use that tool</li>
+      </ol>
+    </div>
+    <div class="steplist-col">
+      <h4>ChatGPT / Other Tools</h4>
+      <p class="path">Settings &gt; Integrations / Connectors / Third-Party Apps</p>
+      <ol style="margin-top:10px"><li>Process is similar: connect, authorize, and start using.</li></ol>
+    </div>
+  </div>
+
+  <div class="start-card">
+    <p class="lead"><b style="color:var(--text)">The Progression</b></p>
+    <p class="lead" style="margin-top:2px"><b style="color:var(--text)">Basic Automation (Start Here):</b></p>
+    <ol>
+      <li>Gmail — auto-respond, auto-categorize</li>
+      <li>Google Drive — store and organize documents</li>
+      <li>Calendar — sync with your schedule</li>
+    </ol>
+    <p class="after"><b style="color:var(--text)">Advanced Automation (When You're Ready):</b> Once your prompts are working smoothly, connect Google Drive as a knowledge base so your AI can work independently. This transforms your AI from a tool you direct into an agent that performs tasks autonomously.</p>
+    <p class="after">This is where real time-savings happen: your AI no longer waits for your instruction. It reads your documents, understands your process, and executes tasks on your behalf.</p>
+  </div>
+
+  <!-- PART 5: BUILD YOUR OWN -->
+  <div class="section-label" id="build"><span class="num">05</span><h2>Build Your Own</h2></div>
+  <p class="section-intro">Use the phases above to map a task from your own business, then turn it into a prompt using the same structure as the examples.</p>
+
+  <div class="template-card">
+    <h3>Workflow Mapping Template</h3>
+    <p class="hint">Answer these for a task you do — this becomes the raw material for your prompt.</p>
+    <div id="workflow-fields"></div>
+  </div>
+
+  <div class="template-card">
+    <h3>Prompt Template</h3>
+    <p class="hint">Fill in the five parts — your prompt builds itself below as you type.</p>
+    <div id="prompt-fields"></div>
+    <div class="preview-box" id="prompt-preview"></div>
+  </div>
+
+  <!-- PART 6: DOWNLOAD -->
+  <div class="section-label" id="download"><span class="num">06</span><h2>Download</h2></div>
+  <div class="download-card">
+    <p>Every example prompt from Part 2, plus <b>your</b> workflow map and prompt template from Part 5 — all in one file.</p>
+    <button type="button" class="btn-primary" id="downloadAllBtn"></button>
+  </div>
+
+</div>
+
+<footer class="site">
+  <div class="wrap">
+    <p class="updated">Last updated September 16, 2026</p>
+    <p>A living guide — Transaction Management, Market Analysis, and Admin &amp; Operations will be added as they're built out. Work through one function at a time.</p>
+  </div>
+</footer>
+
+<script>
+const DATA = [
+  {
+    id: "marketing",
+    name: "Marketing & Listing Promotion",
+    overview: "Creating compelling content across multiple channels. This is where AI saves the most time because you repeat the same patterns daily.",
+    l1: {
+      heading: "Write a Single Piece", parens: "Manual AI Use",
+      prompt: `You are a real estate agent writing a social media caption for a property listing. Your voice is warm, approachable, and encouraging. You focus on how homes make people feel.
+
+Here's what I'll give you: Property address, bedrooms, bathrooms, and key features from the listing.
+
+Here's what you'll create:
+1. Write a social caption highlighting 2-3 standout features
+2. Use simple, everyday language
+3. End with an engaging question or soft call to action
+4. Keep it under 300 characters before hashtags
+
+Important rules:
+- No square footage
+- No em dashes
+- Exactly 3 hashtags
+- Speak directly to the reader
+
+Good example: Close-in Southeast bungalow with original hardwoods and charming front porch. Bright kitchen opens to dining room. Primary bedroom tucked away for quiet. What's on your Portland home wishlist? #SoutheastPortland #BungalowLiving #FirstTimeHomeBuyer`,
+      benefit: "Skip the blank page. Get a polished caption in 30 seconds that you can post as-is or edit."
+    },
+    l2: {
+      heading: "Create a Full Content Package", parens: "Reusable Template",
+      prompt: `You are a real estate marketing specialist creating a complete content package from one listing.
+
+Here's what I'll give you: Listing address, bedrooms/bathrooms, neighborhood, key features, and open house details (if available).
+
+Create THREE pieces of content in this exact format:
+
+SOCIAL CAPTION
+[Instagram caption under 300 characters, exactly 3 hashtags, warm tone, engagement-focused]
+
+JUST LISTED EMAIL
+[Subject line under 60 characters, then a short 3-4 sentence email body announcing the new listing. Warm tone, invites the reader to view or share, no jargon]
+
+PROPERTY DESCRIPTION
+[2-3 sentences for website: focus on lifestyle and standout features]
+
+Follow these rules for ALL pieces:
+- No real estate jargon
+- No square footage
+- Write for first-time buyers
+- Match this tone: [describe your brand voice]
+
+Reference this listing as an example of your style: [paste a listing you've written that you love]`,
+      benefit: "One prompt generates content for social, email, and website. Test it once, use it for every listing."
+    }
+  },
+  {
+    id: "leads",
+    name: "Lead Management & Nurturing",
+    overview: "Organizing incoming leads and keeping them engaged. This is where AI helps you stay on top of pipeline without constant manual sorting.",
+    l1: {
+      heading: "Organize and Prioritize", parens: "Manual AI Use",
+      prompt: `You are helping a real estate agent organize their incoming leads.
+
+Here's what I'll give you: A list of recent inquiries with details about how they contacted you, what they're looking for, and any information they shared.
+
+Here's what you'll do:
+1. Sort leads into HOT (ready to move forward), WARM (interested but gathering info), or COLD (early stage)
+2. For each lead, suggest a specific follow-up action (call, email specific resource, etc.)
+3. Flag any leads that need outreach in the next 48 hours
+4. Give me the results in a clear, scannable format
+
+Score based on: Timeline urgency, engagement level, and fit with your market.`,
+      benefit: "Turn a messy inbox into a clear action plan. Know exactly who to call and why."
+    },
+    l2: {
+      heading: "Generate Personalized Follow-Ups", parens: "Reusable Template",
+      prompt: `You are writing personalized follow-up emails for real estate leads.
+
+Here's what I'll give you: Lead category (buyer inquiry, past client, open house attendee, referral), their situation, and any personal details.
+
+Write a follow-up email that:
+1. Is helpful, not salesy
+2. Positions me as a resource and problem-solver
+3. Includes one specific next step or resource
+4. Is under 200 words
+5. Sounds conversational, like a real person
+
+Match this communication style: [describe how you naturally talk to people]
+
+Example lead: [describe a typical lead scenario]`,
+      benefit: "Every new lead gets a thoughtful response within hours. Your nurturing becomes consistent and automatic."
+    }
+  },
+  {
+    id: "communication",
+    name: "Client Communication",
+    overview: "Handling emails, questions, and status updates throughout transactions. This is the routine communication that takes hours but follows predictable patterns.",
+    l1: {
+      heading: "Draft Client Emails", parens: "Manual AI Use",
+      prompt: `You are drafting professional yet warm client emails on behalf of a real estate agent.
+
+Here's what I'll give you: The client's question or situation that needs a response.
+
+Write an email that:
+1. Answers the question clearly and completely
+2. Explains the why (why this step matters, why we do it this way)
+3. Provides next steps or what to expect
+4. Ends with an open invitation for follow-up questions
+5. Is 2-3 short paragraphs max
+6. Sounds like a real person, not a robot
+
+Example of your email style: [paste an email you've sent that you like]`,
+      benefit: "Draft a week's emails in 10 minutes. Review before sending, but you're never staring at a blank screen."
+    },
+    l2: {
+      heading: "Build Response Templates", parens: "Reusable System",
+      prompt: `You are creating email templates for common client questions during real estate transactions.
+
+Here are my most common client questions: [list them]
+
+For each question, write a response template that:
+1. Answers fully and reassures the client
+2. Explains why this is normal and what happens next
+3. Includes any relevant links or resources
+4. Is friendly and under 200 words
+5. Can be personalized with the client's name
+
+Use this tone: [describe your communication style]
+
+Format as templates I can copy/paste and quickly personalize per client.
+
+Example transaction stage: [describe what stage these questions typically come up]`,
+      benefit: "Consistent, professional communication at every step. Your clients feel supported, and you save hours on email."
+    }
+  },
+  {
+    id: "prospecting",
+    name: "Prospecting & Lead Generation",
+    overview: "Reaching out to your network strategically. This is where AI helps you maintain relationships and identify genuine opportunities without constant guesswork.",
+    l1: {
+      heading: "Qualify Your Network", parens: "Manual AI Use",
+      prompt: `You are helping a real estate agent qualify their sphere leads.
+
+Here's what I'll give you: A list of contacts with who they are and any recent life events or context you know about them.
+
+Here's what you'll do:
+1. Categorize each: Likely Buyer, Likely Seller, Possible Referral Source, or Keep Warm
+2. For each, suggest a conversation starter (what to ask, what to talk about)
+3. Flag anyone you should reach out to in the next 2 weeks
+4. Identify any obvious mismatches (wrong market, wrong timing)
+
+Give me a clear, scannable format I can use as a prospecting roadmap.`,
+      benefit: "Stop guessing who to call. Your network becomes a live pipeline with specific next steps."
+    },
+    l2: {
+      heading: "Write Outreach Messages", parens: "Reusable Template",
+      prompt: `You are writing natural, personalized outreach messages to sphere leads for a real estate agent.
+
+Here's what I'll give you: Contact name, our relationship, and any recent life event or context.
+
+Write a message that:
+1. References something specific about them or our relationship
+2. Feels genuine, not salesy
+3. Gives them an easy way to respond (not "let's grab coffee")
+4. Is under 150 words
+5. Sounds like a real person reaching out
+
+Match this voice: [describe how you naturally talk to people]
+
+Example contact: [describe a typical sphere lead]`,
+      benefit: "Reach out consistently without sounding scripted. Your network stays warm and engaged."
+    }
+  }
+];
+
+const TERMINOLOGY = [
+  {
+    title: "Skill / Custom Instruction / System Prompt",
+    means: "All of these mean: a set of instructions the AI remembers and uses for every message in a conversation.",
+    rows: [
+      ["Claude", "“Custom Instructions” — set in settings, applies to all chats"],
+      ["ChatGPT", "“Custom Instructions” — set in settings, applies to all chats"],
+      ["Other tools", "“System Prompt” or “Skill”"]
+    ]
+  },
+  {
+    title: "Project / Knowledge Base / Document",
+    means: "All of these mean: a place to store reference information for your AI to use.",
+    rows: [
+      ["Claude", "“Projects” — organize prompts, upload documents, share with team"],
+      ["ChatGPT", "“GPTs” or “Knowledge Base”"],
+      ["Notion AI", "“Database” or “Page”"]
+    ]
+  },
+  {
+    title: "Markdown File / Document",
+    means: "All of these mean: a text file you can version control and reference.",
+    rows: [
+      ["Save as", "a .md (markdown) file"],
+      ["Upload to", "Google Drive, GitHub, or your CRM"],
+      ["Then", "reference it every time you need it"]
+    ]
+  }
+];
+
+const SAVE_OPTIONS = [
+  {
+    title: "Option 1 — In Your AI Tool",
+    tag: "Easiest to start",
+    items: [
+      "Create a custom instruction or skill in your AI tool",
+      "The AI remembers it for every future conversation"
+    ],
+    bestFor: "Prompts you use daily."
+  },
+  {
+    title: "Option 2 — In Your Reference System",
+    tag: "Best for long-term",
+    items: [
+      "Save the prompt as a markdown file in Google Drive, Notion, or GitHub",
+      "Copy/paste it into your AI tool each time you need it",
+      "Advantage: you own the file, and can organize and share it"
+    ],
+    bestFor: "Prompts you use multiple times a week but not every day."
+  },
+  {
+    title: "Option 3 — Connect to Google Drive",
+    tag: "Advanced — agentic automation",
+    items: [
+      "Store your prompts and reference documents in Google Drive",
+      "Connect your AI tool (Claude, ChatGPT, etc.) to Google Drive via connectors",
+      "The AI can now read your documents, reference your templates, and perform tasks autonomously",
+      "Advantage: AI becomes truly agentic — it can retrieve context, make decisions, and execute tasks without you re-explaining each time"
+    ],
+    bestFor: "When you're ready to move beyond manual prompting and let AI work independently.",
+    example: "AI reads your lead database from Drive, scores leads autonomously, sends follow-ups, and logs results back to Drive."
+  }
+];
+
+const CONNECTORS = [
+  { name: "Gmail Connector", does: "Pull incoming emails, auto-respond, auto-categorize, generate responses.", why: "You never manually copy/paste client emails into your AI tool again." },
+  { name: "Google Drive Connector", does: "Pull documents, generate from templates, save results to Drive.", why: "Your processes stay organized in Drive while AI handles the heavy lifting." },
+  { name: "Google Calendar Connector", does: "Read your calendar, schedule follow-ups, generate notes from events.", why: "AI stays in sync with your schedule and can auto-schedule tasks." },
+  { name: "Canva Connector", does: "Generate listing graphics, create marketing images using your templates.", why: "AI speeds up your design work without learning Canva." },
+  { name: "Trello Connector", does: "Move tasks through your pipeline automatically, trigger actions when cards move.", why: "Your AI keeps Trello updated as work progresses." }
+];
+
+const WORKFLOW_FIELDS = [
+  { key: "wf_task", label: "Your task or function", placeholder: "e.g. writing follow-up emails for new leads" },
+  { key: "wf_input", label: "Input — what do you start with?", placeholder: "e.g. a new lead's contact info and inquiry" },
+  { key: "wf_process", label: "Process — what steps do you follow?", placeholder: "e.g. first I check who referred them, then I..." },
+  { key: "wf_voice", label: "Voice — how do you sound?", placeholder: "e.g. warm, direct, a little playful, never salesy" },
+  { key: "wf_constraints", label: "Constraints — what rules never change?", placeholder: "e.g. never mention square footage, always end with a question" },
+  { key: "wf_quality", label: "Quality check — how do you know if it's good?", placeholder: "e.g. it sounds like me, it's short enough to scan on a phone" }
+];
+
+const PROMPT_FIELDS = [
+  { key: "pt_role", label: "Role and voice — I am [role]. My voice is [tone].", placeholder: "e.g. I am a real estate agent in Portland, OR. My voice is warm and direct." },
+  { key: "pt_input", label: "Input description — here's what you'll give me: [input]", placeholder: "e.g. a list of open house sign-ins with name and contact info" },
+  { key: "pt_steps", label: "Process steps — here's what I need you to do: [steps]", placeholder: "e.g. 1. sort by interest level  2. draft a follow-up for each..." },
+  { key: "pt_rules", label: "Constraints — important constraints: [rules]", placeholder: "e.g. under 150 words, no jargon, one clear next step" },
+  { key: "pt_example", label: "Example of good output — here's what good looks like: [example]", placeholder: "paste a real example you like" }
+];
+
+function slugify(name) {
+  return name.toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+}
+function storageKey(scope, fieldKey) { return `re-ai-guide:${scope}:${fieldKey}`; }
+function loadVal(scope, fieldKey) {
+  try { return localStorage.getItem(storageKey(scope, fieldKey)) || ""; } catch (e) { return ""; }
+}
+function saveVal(scope, fieldKey, value) {
+  try { localStorage.setItem(storageKey(scope, fieldKey), value); } catch (e) {}
+}
+
+const copyIconSVG = '<svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="7" y="7" width="10" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M13 7V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" stroke="currentColor" stroke-width="1.5"/></svg>';
+const checkIconSVG = '<svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 10.5L8 14.5L16 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const downloadIconSVG = '<svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 3v10m0 0l-4-4m4 4l4-4M4 16h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const chevronSVG = '<svg class="chevron" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+async function copyText(text, btn) {
+  let ok = false;
+  try { await navigator.clipboard.writeText(text); ok = true; }
+  catch (e) {
+    try {
+      const ta = document.createElement("textarea");
+      ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.focus(); ta.select();
+      ok = document.execCommand("copy");
+      document.body.removeChild(ta);
+    } catch (e2) { ok = false; }
+  }
+  const original = btn.innerHTML;
+  if (ok) { btn.innerHTML = checkIconSVG + "Copied"; btn.classList.add("copied"); }
+  else { btn.innerHTML = "Press ⌘/Ctrl+C"; }
+  setTimeout(() => { btn.innerHTML = original; btn.classList.remove("copied"); }, 1800);
+}
+
+function buildCodeBlock(labelText, promptText) {
+  const wrap = document.createElement("div");
+  wrap.className = "code-block";
+  const head = document.createElement("div");
+  head.className = "code-block-head";
+  const span = document.createElement("span");
+  span.textContent = labelText;
+  const btn = document.createElement("button");
+  btn.type = "button"; btn.className = "copy-btn";
+  btn.innerHTML = copyIconSVG + "Copy";
+  btn.addEventListener("click", () => copyText(promptText, btn));
+  head.appendChild(span); head.appendChild(btn);
+  const pre = document.createElement("pre");
+  pre.className = "prompt";
+  const code = document.createElement("code");
+  code.textContent = promptText;
+  pre.appendChild(code);
+  wrap.appendChild(head); wrap.appendChild(pre);
+  return wrap;
+}
+
+function buildLevelBlock(kind, num, levelData) {
+  const el = document.createElement("div");
+  el.className = `level-block ${kind}`;
+
+  const head = document.createElement("div");
+  head.className = "level-head";
+  const chip = document.createElement("span");
+  chip.className = "level-chip";
+  chip.textContent = `Level ${num}`;
+  const h3 = document.createElement("h3");
+  h3.innerHTML = `${levelData.heading} <span class="parens">(${levelData.parens})</span>`;
+  head.appendChild(chip);
+  head.appendChild(h3);
+  el.appendChild(head);
+
+  el.appendChild(buildCodeBlock("Example Prompt — copy and paste", levelData.prompt));
+
+  const benefit = document.createElement("div");
+  benefit.className = "benefit";
+  benefit.innerHTML = "<b>Benefit:</b> ";
+  benefit.appendChild(document.createTextNode(levelData.benefit));
+  el.appendChild(benefit);
+
+  return el;
+}
+
+const container = document.getElementById("functions");
+DATA.forEach((fn, idx) => {
+  const card = document.createElement("article");
+  card.className = "fn-card";
+  card.id = fn.id;
+  card.dataset.open = "false";
+
+  const toggle = document.createElement("button");
+  toggle.type = "button"; toggle.className = "fn-toggle";
+  toggle.setAttribute("aria-expanded", "false");
+  toggle.innerHTML = `
+    <span class="fn-idx">${String(idx + 1).padStart(2, "0")}</span>
+    <span class="fn-heading"><h2></h2><p></p></span>
+    ${chevronSVG}
+  `;
+  toggle.querySelector("h2").textContent = fn.name;
+  toggle.querySelector("p").textContent = fn.overview;
+  toggle.addEventListener("click", () => {
+    const isOpen = card.dataset.open === "true";
+    card.dataset.open = isOpen ? "false" : "true";
+    toggle.setAttribute("aria-expanded", String(!isOpen));
+  });
+
+  const body = document.createElement("div");
+  body.className = "fn-body";
+  const bodyInner = document.createElement("div");
+  bodyInner.className = "fn-body-inner";
+  const content = document.createElement("div");
+  content.className = "fn-content";
+
+  const overview = document.createElement("p");
+  overview.className = "overview-text";
+  overview.textContent = fn.overview;
+  content.appendChild(overview);
+
+  content.appendChild(buildLevelBlock("l1", 1, fn.l1));
+  content.appendChild(buildLevelBlock("l2", 2, fn.l2));
+
+  bodyInner.appendChild(content);
+  body.appendChild(bodyInner);
+  card.appendChild(toggle);
+  card.appendChild(body);
+  container.appendChild(card);
+});
+
+if (location.hash) {
+  const target = document.querySelector(location.hash);
+  if (target && target.classList.contains("fn-card")) {
+    target.dataset.open = "true";
+    target.querySelector(".fn-toggle").setAttribute("aria-expanded", "true");
+  }
+}
+
+// Part 3: terminology + save options + quick reference
+const termHolder = document.getElementById("terminology");
+TERMINOLOGY.forEach(t => {
+  const card = document.createElement("div");
+  card.className = "term-card";
+  const rows = t.rows.map(r => `<div class="term-row"><span class="tool">${r[0]}</span><span class="val">${r[1]}</span></div>`).join("");
+  card.innerHTML = `<h4>${t.title}</h4><p class="means">${t.means}</p><div class="term-rows">${rows}</div>`;
+  termHolder.appendChild(card);
+});
+
+const optionsHolder = document.getElementById("save-options");
+SAVE_OPTIONS.forEach(o => {
+  const card = document.createElement("div");
+  card.className = "option-card";
+  const items = o.items.map(i => `<li>${i}</li>`).join("");
+  const exampleHTML = o.example ? `<p class="best-for" style="margin-top:6px"><b>Example:</b> ${o.example}</p>` : "";
+  card.innerHTML = `<h4>${o.title} <span class="level-chip" style="color:var(--accent);background:var(--accent-soft);border:1px solid var(--accent-line)">${o.tag}</span></h4><ul>${items}</ul><p class="best-for"><b>Best for:</b> ${o.bestFor}</p>${exampleHTML}`;
+  optionsHolder.appendChild(card);
+});
+
+document.getElementById("quickref").innerHTML = `
+  <div class="row"><span class="who">Claude users</span><span class="path">Settings › Custom Instructions › Add your prompt › Save</span></div>
+  <div class="row"><span class="who">ChatGPT users</span><span class="path">Settings › Custom Instructions › Add your prompt › Save</span></div>
+  <div class="row"><span class="who">Other AI tools</span><span class="path">Settings › Custom Instructions / Skills / System Prompt</span></div>
+`;
+
+// Part 4: connectors
+const connectorHolder = document.getElementById("connectors");
+CONNECTORS.forEach(c => {
+  const card = document.createElement("div");
+  card.className = "connector-card";
+  card.innerHTML = `<h4>${c.name}</h4><p><b>What it does:</b> ${c.does}</p><p><b>Why it matters:</b> ${c.why}</p>`;
+  connectorHolder.appendChild(card);
+});
+
+// Part 5: build your own
+function buildFieldGroup(scope, fields, onChange) {
+  const el = document.createElement("div");
+  fields.forEach(f => {
+    const field = document.createElement("div");
+    field.className = "field";
+    const label = document.createElement("label");
+    label.textContent = f.label;
+    const textarea = document.createElement("textarea");
+    textarea.placeholder = f.placeholder;
+    textarea.value = loadVal(scope, f.key);
+    textarea.addEventListener("input", () => {
+      saveVal(scope, f.key, textarea.value);
+      if (onChange) onChange();
+    });
+    field.appendChild(label);
+    field.appendChild(textarea);
+    el.appendChild(field);
+  });
+  return el;
+}
+
+document.getElementById("workflow-fields").appendChild(buildFieldGroup("global", WORKFLOW_FIELDS));
+
+const promptPreviewHolder = document.getElementById("prompt-preview");
+function assembledPrompt() {
+  const v = k => loadVal("global", k).trim();
+  const role = v("pt_role") || "[role]. My voice is [tone].";
+  const input = v("pt_input") || "[input]";
+  const steps = v("pt_steps") || "[steps]";
+  const rules = v("pt_rules") || "[rules]";
+  const example = v("pt_example") || "[example]";
+  return `I am ${role}\nHere's what you'll give me: ${input}\nHere's what I need you to do: ${steps}\nImportant constraints: ${rules}\nHere's what good looks like: ${example}`;
+}
+function refreshPreview() {
+  promptPreviewHolder.innerHTML = "";
+  promptPreviewHolder.appendChild(buildCodeBlock("Your prompt", assembledPrompt()));
+}
+document.getElementById("prompt-fields").appendChild(buildFieldGroup("global", PROMPT_FIELDS, refreshPreview));
+refreshPreview();
+
+// Part 6: download everything
+function workflowMarkdown() {
+  return WORKFLOW_FIELDS.map(f => `**${f.label}**\n${loadVal("global", f.key).trim() || "_(not yet filled in)_"}`).join("\n\n");
+}
+
+async function downloadAll() {
+  const functionsMd = DATA.map(fn => `## ${fn.name}
+
+${fn.overview}
+
+### Level 1 — ${fn.l1.heading} (${fn.l1.parens})
+
+\`\`\`
+${fn.l1.prompt}
+\`\`\`
+
+**Benefit:** ${fn.l1.benefit}
+
+### Level 2 — ${fn.l2.heading} (${fn.l2.parens})
+
+\`\`\`
+${fn.l2.prompt}
+\`\`\`
+
+**Benefit:** ${fn.l2.benefit}`).join("\n\n---\n\n");
+
+  const md = `# Real Estate AI Guide — Prompts &amp; Templates
+
+${functionsMd}
+
+---
+
+## My Workflow Map
+
+${workflowMarkdown()}
+
+## My Prompt Template
+
+\`\`\`
+${assembledPrompt()}
+\`\`\`
+`.replace(/&amp;/g, "&");
+
+  const filename = "real-estate-ai-guide-prompts.md";
+
+  if (window.claude && typeof window.claude.use === "function") {
+    try {
+      const downloads = await window.claude.use("downloads");
+      if (downloads) { await downloads.save({ filename, data: md }); return; }
+    } catch (err) {
+      if (err && (err.code === "declined" || err.code === "rate_limited")) return;
+    }
+  }
+
+  const blob = new Blob([md], { type: "text/markdown" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+const downloadBtn = document.getElementById("downloadAllBtn");
+downloadBtn.innerHTML = downloadIconSVG + "Download All Prompts and Templates as Markdown";
+downloadBtn.addEventListener("click", downloadAll);
+</script>
+
+</body>
+</html>
