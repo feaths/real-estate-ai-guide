@@ -446,7 +446,7 @@
   }
   .benefit strong { color: var(--text); font-weight: 600; }
 
-  /* Terminology (Part 3) */
+  /* Terminology (hidden section: Save Your Prompt) */
   .term-list { margin-top: 22px; display: flex; flex-direction: column; gap: 14px; }
   .term-card {
     background: var(--surface);
@@ -496,7 +496,7 @@
     border-radius: 6px;
   }
 
-  /* Connectors (Part 4) */
+  /* Connectors (Part 3) */
   .flow {
     margin-top: 22px;
     background: var(--surface);
@@ -541,7 +541,7 @@
   .start-card ol { font-size: 0.92rem; color: var(--text); padding-left: 1.2em; }
   .start-card p.after { margin-top: 12px; font-size: 0.88rem; color: var(--text-60); }
 
-  /* Templates (Part 5) */
+  /* Templates (Part 4) */
   .template-card {
     margin-top: 22px;
     background: var(--surface);
@@ -577,7 +577,7 @@
 
   .preview-box { margin-top: 16px; }
 
-  /* Download (Part 6) */
+  /* Download (hidden section: Download All Prompts) */
   .download-card {
     margin: 22px 0 60px;
     background: var(--surface);
@@ -651,10 +651,8 @@
       <a href="#foundation">Foundation</a>
       <a href="#framework">Framework</a>
       <a href="#functions-top">Functions</a>
-      <a href="#save">Save</a>
       <a href="#connect">Connect</a>
       <a href="#build">Build</a>
-      <a href="#download">Download</a>
     </nav>
   </div>
 </header>
@@ -749,9 +747,9 @@
 
   <main class="functions" id="functions"></main>
 
+  <!-- Hidden section: Save Your Prompt
   <hr class="part-divider">
 
-  <!-- PART 3: SAVE YOUR PROMPT -->
   <div class="eyebrow part-eyebrow" id="save">Part 3 — Save Your Prompt</div>
   <h2 class="part-heading">Save Your Prompt</h2>
   <p class="section-intro">Once you have a working prompt, you need to save it somewhere you can use it repeatedly without re-typing it.</p>
@@ -761,6 +759,7 @@
   <div id="save-options" class="options-grid"></div>
 
   <div class="quickref" id="quickref"></div>
+  End hidden section: Save Your Prompt -->
 
   <hr class="part-divider">
 
@@ -769,8 +768,8 @@
     <p>This guide is educational. Security requirements vary by organization. You are responsible for evaluating whether each tool meets your specific security, compliance, and business needs before implementation.</p>
   </div>
 
-  <!-- PART 4: CONNECT YOUR TOOLS -->
-  <div class="eyebrow part-eyebrow" id="connect">Part 4 — Connect Your Tools</div>
+  <!-- PART 3: CONNECT YOUR TOOLS -->
+  <div class="eyebrow part-eyebrow" id="connect">Part 3 — Connect Your Tools</div>
   <h2 class="part-heading">Connect Your Tools</h2>
   <p class="section-intro">Once your prompts are trained and working, the next step is connecting them to your actual workflow. This is where automation gets powerful.</p>
   <p class="section-intro" style="margin-top:14px">A connector is a link between your AI tool and another application (like Gmail, Google Drive, Canva, etc.). Instead of manually copying information, the connector pulls data from your tools, sends it to AI for processing, and puts the results back where you need them.</p>
@@ -819,8 +818,8 @@
 
   <hr class="part-divider">
 
-  <!-- PART 5: BUILD YOUR OWN -->
-  <div class="eyebrow part-eyebrow" id="build">Part 5 — Build Your Own</div>
+  <!-- PART 4: BUILD YOUR OWN -->
+  <div class="eyebrow part-eyebrow" id="build">Part 4 — Build Your Own</div>
   <h2 class="part-heading">Build Your Own</h2>
   <p class="section-intro">Use the phases above to map a task from your own business, then turn it into a prompt using the same structure as the examples.</p>
 
@@ -837,15 +836,16 @@
     <div class="preview-box" id="prompt-preview"></div>
   </div>
 
+  <!-- Hidden section: Download All Prompts
   <hr class="part-divider">
 
-  <!-- PART 6: DOWNLOAD -->
   <div class="eyebrow part-eyebrow" id="download">Part 6 — Download</div>
   <h2 class="part-heading">Download</h2>
   <div class="download-card">
     <p>Every example prompt from Part 2, plus <strong>your</strong> workflow map and prompt template from Part 5 — all in one file.</p>
     <button type="button" class="btn-primary" id="downloadAllBtn"></button>
   </div>
+  End hidden section: Download All Prompts -->
 
 </div>
 
@@ -1269,7 +1269,10 @@ if (location.hash) {
   }
 }
 
-// Part 3: terminology + save options + quick reference
+// Hidden section: Save Your Prompt (terminology + save options + quick reference)
+// Kept for future use — re-enable by uncommenting this block and the matching
+// HTML block ("Hidden section: Save Your Prompt") above.
+/*
 const termHolder = document.getElementById("terminology");
 TERMINOLOGY.forEach(t => {
   const card = document.createElement("div");
@@ -1294,6 +1297,7 @@ document.getElementById("quickref").innerHTML = `
   <div class="row"><span class="who">ChatGPT users</span><span class="path">Settings › Custom Instructions › Add your prompt › Save</span></div>
   <div class="row"><span class="who">Other AI tools</span><span class="path">Settings › Custom Instructions / Skills / System Prompt</span></div>
 `;
+*/
 
 // Part 4: connectors
 const connectorHolder = document.getElementById("connectors");
@@ -1410,9 +1414,15 @@ ${assembledPrompt()}
   URL.revokeObjectURL(url);
 }
 
+// Hidden section: Download All Prompts (button wiring)
+// Kept for future use — re-enable by uncommenting this block and the matching
+// HTML block ("Hidden section: Download All Prompts") above. downloadAll()
+// and workflowMarkdown() above stay defined and ready to use.
+/*
 const downloadBtn = document.getElementById("downloadAllBtn");
 downloadBtn.innerHTML = downloadIconSVG + "Download All Prompts and Templates as Markdown";
 downloadBtn.addEventListener("click", downloadAll);
+*/
 </script>
 
 </body>
