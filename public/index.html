@@ -201,7 +201,7 @@
   }
   .toc a:hover { color: var(--primary-strong); background: var(--primary-soft); }
 
-  /* Hero / Part 2 */
+  /* Hero / Intro */
   .hero { padding: 52px 0 8px; }
   .hero h1 {
     font-size: clamp(2rem, 4.6vw, 3rem);
@@ -320,7 +320,7 @@
   }
   .external-link:hover { color: var(--btn-bg-hover); }
 
-  /* Part 3 function nav */
+  /* Part 2 function nav */
   .fn-nav {
     margin: 8px 0 26px;
     display: flex;
@@ -446,7 +446,7 @@
   }
   .benefit strong { color: var(--text); font-weight: 600; }
 
-  /* Terminology (Part 4) */
+  /* Terminology (Part 3) */
   .term-list { margin-top: 22px; display: flex; flex-direction: column; gap: 14px; }
   .term-card {
     background: var(--surface);
@@ -496,7 +496,7 @@
     border-radius: 6px;
   }
 
-  /* Connectors (Part 5) */
+  /* Connectors (Part 4) */
   .flow {
     margin-top: 22px;
     background: var(--surface);
@@ -541,7 +541,7 @@
   .start-card ol { font-size: 0.92rem; color: var(--text); padding-left: 1.2em; }
   .start-card p.after { margin-top: 12px; font-size: 0.88rem; color: var(--text-60); }
 
-  /* Templates (Part 6) */
+  /* Templates (Part 5) */
   .template-card {
     margin-top: 22px;
     background: var(--surface);
@@ -577,7 +577,7 @@
 
   .preview-box { margin-top: 16px; }
 
-  /* Download (Part 7) */
+  /* Download (Part 6) */
   .download-card {
     margin: 22px 0 60px;
     background: var(--surface);
@@ -648,8 +648,7 @@
       <div class="brand-sub">Framework to Implementation</div>
     </div>
     <nav class="toc" role="navigation" aria-label="Guide sections">
-      <a href="#brain-foundation">Brain</a>
-      <a href="#brain-connect">Setup</a>
+      <a href="#foundation">Foundation</a>
       <a href="#framework">Framework</a>
       <a href="#functions-top">Functions</a>
       <a href="#save">Save</a>
@@ -662,9 +661,24 @@
 
 <div class="wrap" id="main-content">
 
-  <!-- PART 0: BRAIN FOUNDATION -->
-  <h2 class="part-heading" id="brain-foundation">Part 0: Your AI Brain Foundation</h2>
-  <p class="section-intro">Every AI tool is only as good as the information you give it. Before you put any of the prompts in this guide to work, build a "brain" first — a comprehensive document about your business, your market, your processes, and your voice. Everything downstream gets sharper once AI already knows who you are.</p>
+  <!-- INTRO -->
+  <section class="hero" id="intro">
+    <h1>Stop collecting AI tips.<br><em>Build a system instead.</em></h1>
+    <p class="lede">This guide teaches you how to identify repetitive tasks in your real estate business, turn them into AI prompts, and integrate them into your daily workflow. By the end, you'll have multiple AI-powered systems handling routine work so you can focus on client relationships.</p>
+
+    <div class="learn-list">
+      <div class="row"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10.5L8 14.5L16 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Turn a repetitive task into a working AI prompt</div>
+      <div class="row"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10.5L8 14.5L16 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Save that prompt so you're never rewriting it from scratch</div>
+      <div class="row"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10.5L8 14.5L16 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Connect it to tools you already use — Gmail, Drive, Calendar</div>
+      <div class="row"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10.5L8 14.5L16 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Build your own version for tasks beyond the four examples here</div>
+    </div>
+  </section>
+
+  <hr class="part-divider">
+
+  <!-- FOUNDATION SET-UP (unnumbered prerequisite) -->
+  <h2 class="part-heading" id="foundation">Foundation Set-Up</h2>
+  <p class="section-intro">Every AI tool is only as good as the information you give it. Before you put any of the framework in this guide to work, build a "brain" first — a comprehensive document about your business, your market, your processes, and your voice. Everything downstream gets sharper once AI already knows who you are.</p>
 
   <h3 class="section-heading">Two Ways to Build Your Brain</h3>
   <div class="options-grid">
@@ -683,32 +697,14 @@
     </div>
   </div>
 
-  <hr class="part-divider">
-
-  <!-- PART 1: CONNECT YOUR BRAIN -->
-  <h2 class="part-heading" id="brain-connect">Part 1: Connect Your Brain to Your Tools</h2>
-  <p class="section-intro">Once you have your brain document, paste it into the AI tools you use (Claude, ChatGPT, etc.). The exact steps vary by tool, so figure out what works best for your workflow.</p>
-
   <h3 class="section-heading">Keep Your Brain Updated</h3>
   <p class="section-intro">Your brain is a living document. Review and update it monthly, especially as your market, listings, or processes change. The better your brain stays current, the better your AI outputs will be.</p>
 
   <hr class="part-divider">
 
-  <!-- PART 2: FRAMEWORK -->
-  <section class="hero" id="framework">
-    <div class="eyebrow">Part 2 — The Framework</div>
-    <h1>Stop collecting AI tips.<br><em>Build a system instead.</em></h1>
-    <p class="lede">This guide teaches you how to identify repetitive tasks in your real estate business, turn them into AI prompts, and integrate them into your daily workflow. By the end, you'll have multiple AI-powered systems handling routine work so you can focus on client relationships.</p>
-
-    <div class="learn-list">
-      <div class="row"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10.5L8 14.5L16 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Turn a repetitive task into a working AI prompt</div>
-      <div class="row"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10.5L8 14.5L16 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Save that prompt so you're never rewriting it from scratch</div>
-      <div class="row"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10.5L8 14.5L16 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Connect it to tools you already use — Gmail, Drive, Calendar</div>
-      <div class="row"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10.5L8 14.5L16 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Build your own version for tasks beyond the four examples here</div>
-    </div>
-  </section>
-
-  <h2 class="section-heading">The 4-Phase Method</h2>
+  <!-- PART 1: THE 4-PHASE FRAMEWORK -->
+  <div class="eyebrow part-eyebrow" id="framework">Part 1 — The 4-Phase Framework</div>
+  <h2 class="part-heading">The 4-Phase Framework</h2>
   <div class="phase-grid">
     <div class="phase-card">
       <div class="phase-num">01</div>
@@ -733,15 +729,15 @@
   </div>
 
   <div class="principle">
-    <h2 class="sr-only">Key Principle</h2>
+    <h3 class="sr-only">Key Principle</h3>
     <p class="statement">You can't automate what you haven't clarified.</p>
     <p class="sub">The examples below show what's possible. Your job is to adapt them to your voice and market.</p>
   </div>
 
   <hr class="part-divider">
 
-  <!-- PART 3: FUNCTIONS -->
-  <div class="eyebrow part-eyebrow" id="functions-top">Part 3 — Real Estate Functions</div>
+  <!-- PART 2: FUNCTIONS -->
+  <div class="eyebrow part-eyebrow" id="functions-top">Part 2 — Real Estate Functions</div>
   <h2 class="part-heading">Real Estate Functions</h2>
   <p class="section-intro">Four functions where agents get the fastest return on AI. Each one shows a Level 1 prompt you can use today and a Level 2 template you build once and reuse.</p>
   <nav class="fn-nav" role="navigation" aria-label="Jump to function">
@@ -755,8 +751,8 @@
 
   <hr class="part-divider">
 
-  <!-- PART 4: SAVE YOUR PROMPT -->
-  <div class="eyebrow part-eyebrow" id="save">Part 4 — Save Your Prompt</div>
+  <!-- PART 3: SAVE YOUR PROMPT -->
+  <div class="eyebrow part-eyebrow" id="save">Part 3 — Save Your Prompt</div>
   <h2 class="part-heading">Save Your Prompt</h2>
   <p class="section-intro">Once you have a working prompt, you need to save it somewhere you can use it repeatedly without re-typing it.</p>
 
@@ -773,8 +769,8 @@
     <p>This guide is educational. Security requirements vary by organization. You are responsible for evaluating whether each tool meets your specific security, compliance, and business needs before implementation.</p>
   </div>
 
-  <!-- PART 5: CONNECT YOUR TOOLS -->
-  <div class="eyebrow part-eyebrow" id="connect">Part 5 — Connect Your Tools</div>
+  <!-- PART 4: CONNECT YOUR TOOLS -->
+  <div class="eyebrow part-eyebrow" id="connect">Part 4 — Connect Your Tools</div>
   <h2 class="part-heading">Connect Your Tools</h2>
   <p class="section-intro">Once your prompts are trained and working, the next step is connecting them to your actual workflow. This is where automation gets powerful.</p>
   <p class="section-intro" style="margin-top:14px">A connector is a link between your AI tool and another application (like Gmail, Google Drive, Canva, etc.). Instead of manually copying information, the connector pulls data from your tools, sends it to AI for processing, and puts the results back where you need them.</p>
@@ -823,8 +819,8 @@
 
   <hr class="part-divider">
 
-  <!-- PART 6: BUILD YOUR OWN -->
-  <div class="eyebrow part-eyebrow" id="build">Part 6 — Build Your Own</div>
+  <!-- PART 5: BUILD YOUR OWN -->
+  <div class="eyebrow part-eyebrow" id="build">Part 5 — Build Your Own</div>
   <h2 class="part-heading">Build Your Own</h2>
   <p class="section-intro">Use the phases above to map a task from your own business, then turn it into a prompt using the same structure as the examples.</p>
 
@@ -843,11 +839,11 @@
 
   <hr class="part-divider">
 
-  <!-- PART 7: DOWNLOAD -->
-  <div class="eyebrow part-eyebrow" id="download">Part 7 — Download</div>
+  <!-- PART 6: DOWNLOAD -->
+  <div class="eyebrow part-eyebrow" id="download">Part 6 — Download</div>
   <h2 class="part-heading">Download</h2>
   <div class="download-card">
-    <p>Every example prompt from Part 3, plus <strong>your</strong> workflow map and prompt template from Part 6 — all in one file.</p>
+    <p>Every example prompt from Part 2, plus <strong>your</strong> workflow map and prompt template from Part 5 — all in one file.</p>
     <button type="button" class="btn-primary" id="downloadAllBtn"></button>
   </div>
 
@@ -1273,7 +1269,7 @@ if (location.hash) {
   }
 }
 
-// Part 4: terminology + save options + quick reference
+// Part 3: terminology + save options + quick reference
 const termHolder = document.getElementById("terminology");
 TERMINOLOGY.forEach(t => {
   const card = document.createElement("div");
@@ -1299,7 +1295,7 @@ document.getElementById("quickref").innerHTML = `
   <div class="row"><span class="who">Other AI tools</span><span class="path">Settings › Custom Instructions / Skills / System Prompt</span></div>
 `;
 
-// Part 5: connectors
+// Part 4: connectors
 const connectorHolder = document.getElementById("connectors");
 CONNECTORS.forEach(c => {
   const card = document.createElement("div");
@@ -1308,7 +1304,7 @@ CONNECTORS.forEach(c => {
   connectorHolder.appendChild(card);
 });
 
-// Part 6: build your own
+// Part 5: build your own
 function buildFieldGroup(scope, fields, onChange) {
   const el = document.createElement("div");
   fields.forEach(f => {
@@ -1352,7 +1348,7 @@ function refreshPreview() {
 document.getElementById("prompt-fields").appendChild(buildFieldGroup("global", PROMPT_FIELDS, refreshPreview));
 refreshPreview();
 
-// Part 7: download everything
+// Part 6: download everything
 function workflowMarkdown() {
   return WORKFLOW_FIELDS.map(f => `**${f.label}**\n${loadVal("global", f.key).trim() || "_(not yet filled in)_"}`).join("\n\n");
 }
