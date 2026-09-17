@@ -181,26 +181,21 @@
   .learn-list .row { display: flex; align-items: flex-start; gap: 10px; font-size: 0.95rem; color: var(--text-60); }
   .learn-list svg { width: 16px; height: 16px; color: var(--primary); flex: none; margin-top: 3px; }
 
-  .section-label {
-    display: flex;
-    align-items: baseline;
-    gap: 10px;
+  .part-divider {
+    border: none;
+    border-top: 1px solid var(--line-strong);
+    margin: 56px 0;
+  }
+  .part-eyebrow {
+    scroll-margin-top: 70px;
+    margin: 0 0 10px;
+  }
+  .part-heading { font-size: 1.7rem; margin-bottom: 4px; }
+
+  .section-heading {
+    font-size: 1.5rem;
     margin: 50px 0 6px;
     scroll-margin-top: 70px;
-  }
-  .section-label .num { font-family: "DM Serif Display", serif; color: var(--primary); font-size: 1rem; }
-  .section-label h2 { font-size: 1.5rem; }
-  .section-label .phase-tag {
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--accent);
-    background: var(--accent-soft);
-    border: 1px solid var(--accent-line);
-    padding: 3px 10px;
-    border-radius: 999px;
-    margin-left: 4px;
   }
   .section-intro { font-size: 0.98rem; color: var(--text-60); margin-top: 10px; max-width: 640px; }
 
@@ -587,11 +582,11 @@
     </div>
   </section>
 
-  <div class="section-label"><span class="num">01</span><h2>The 4-Phase Method</h2></div>
+  <h2 class="section-heading">The 4-Phase Method</h2>
   <div class="phase-grid">
     <div class="phase-card">
       <div class="phase-num">01</div>
-      <h3>Pick Your Task</h3>
+      <h3>Pick Your First Task</h3>
       <p>Choose one task you do repeatedly that takes time and follows a clear pattern.</p>
     </div>
     <div class="phase-card">
@@ -601,13 +596,13 @@
     </div>
     <div class="phase-card">
       <div class="phase-num">03</div>
-      <h3>Build Your Prompt</h3>
-      <p>Turn your workflow into clear instructions for AI.</p>
+      <h3>Build Your Prompt and Test and Refine It</h3>
+      <p>Turn your workflow into clear instructions for AI, then test it with real data and adjust until it consistently works.</p>
     </div>
     <div class="phase-card">
       <div class="phase-num">04</div>
-      <h3>Test and Refine</h3>
-      <p>Use your prompt with real data. Adjust until it works. Use it every time you need that task done.</p>
+      <h3>Use Your Prompt and Automate It</h3>
+      <p>Once it's working, use it every time you need that task done — then look for ways to save it and connect it so it runs with less input from you.</p>
     </div>
   </div>
 
@@ -616,8 +611,11 @@
     <p class="sub">The examples below show what's possible. Your job is to adapt them to your voice and market.</p>
   </div>
 
+  <hr class="part-divider">
+
   <!-- PART 2: FUNCTIONS -->
-  <div class="section-label" id="functions-top"><span class="num">02</span><h2>Real Estate Functions</h2></div>
+  <div class="eyebrow part-eyebrow" id="functions-top">Part 2 — Real Estate Functions</div>
+  <h2 class="part-heading">Real Estate Functions</h2>
   <p class="section-intro">Four functions where agents get the fastest return on AI. Each one shows a Level 1 prompt you can use today and a Level 2 template you build once and reuse.</p>
   <nav class="fn-nav" aria-label="Jump to function">
     <a href="#marketing">Marketing &amp; Listing Promotion</a>
@@ -628,8 +626,11 @@
 
   <main class="functions" id="functions"></main>
 
-  <!-- PART 3: PHASE 5 -->
-  <div class="section-label" id="save"><span class="num">03</span><h2>Save Your Prompt</h2><span class="phase-tag">Phase 5</span></div>
+  <hr class="part-divider">
+
+  <!-- PART 3: SAVE YOUR PROMPT -->
+  <div class="eyebrow part-eyebrow" id="save">Part 3 — Save Your Prompt</div>
+  <h2 class="part-heading">Save Your Prompt</h2>
   <p class="section-intro">Once you have a working prompt, you need to save it somewhere you can use it repeatedly without re-typing it.</p>
 
   <div id="terminology" class="term-list"></div>
@@ -638,8 +639,11 @@
 
   <div class="quickref" id="quickref"></div>
 
-  <!-- PART 4: PHASE 6 -->
-  <div class="section-label" id="connect"><span class="num">04</span><h2>Connect Your Tools</h2><span class="phase-tag">Phase 6</span></div>
+  <hr class="part-divider">
+
+  <!-- PART 4: CONNECT YOUR TOOLS -->
+  <div class="eyebrow part-eyebrow" id="connect">Part 4 — Connect Your Tools</div>
+  <h2 class="part-heading">Connect Your Tools</h2>
   <p class="section-intro">Once your prompts are trained and working, the next step is connecting them to your actual workflow. This is where automation gets powerful.</p>
   <p class="section-intro" style="margin-top:14px">A connector is a link between your AI tool and another application (like Gmail, Google Drive, Canva, etc.). Instead of manually copying information, the connector pulls data from your tools, sends it to AI for processing, and puts the results back where you need them.</p>
 
@@ -685,8 +689,11 @@
     <p class="after">This is where real time-savings happen: your AI no longer waits for your instruction. It reads your documents, understands your process, and executes tasks on your behalf.</p>
   </div>
 
+  <hr class="part-divider">
+
   <!-- PART 5: BUILD YOUR OWN -->
-  <div class="section-label" id="build"><span class="num">05</span><h2>Build Your Own</h2></div>
+  <div class="eyebrow part-eyebrow" id="build">Part 5 — Build Your Own</div>
+  <h2 class="part-heading">Build Your Own</h2>
   <p class="section-intro">Use the phases above to map a task from your own business, then turn it into a prompt using the same structure as the examples.</p>
 
   <div class="template-card">
@@ -702,8 +709,11 @@
     <div class="preview-box" id="prompt-preview"></div>
   </div>
 
+  <hr class="part-divider">
+
   <!-- PART 6: DOWNLOAD -->
-  <div class="section-label" id="download"><span class="num">06</span><h2>Download</h2></div>
+  <div class="eyebrow part-eyebrow" id="download">Part 6 — Download</div>
+  <h2 class="part-heading">Download</h2>
   <div class="download-card">
     <p>Every example prompt from Part 2, plus <b>your</b> workflow map and prompt template from Part 5 — all in one file.</p>
     <button type="button" class="btn-primary" id="downloadAllBtn"></button>
