@@ -541,7 +541,7 @@
   .start-card ol { font-size: 0.92rem; color: var(--text); padding-left: 1.2em; }
   .start-card p.after { margin-top: 12px; font-size: 0.88rem; color: var(--text-60); }
 
-  /* Templates (Part 4) */
+  /* Templates (hidden section: Build Your Own) */
   .template-card {
     margin-top: 22px;
     background: var(--surface);
@@ -652,7 +652,6 @@
       <a href="#framework">Framework</a>
       <a href="#functions-top">Functions</a>
       <a href="#connect">Connect</a>
-      <a href="#build">Build</a>
     </nav>
   </div>
 </header>
@@ -681,17 +680,17 @@
   <h3 class="section-heading">Two Ways to Build Your Brain</h3>
   <div class="options-grid">
     <div class="option-card">
-      <h4>Option A — Use Hello Brain</h4>
-      <p class="option-body">A guided tool that walks you through building your brain with specific questions, step by step.</p>
-      <p class="option-body"><a class="external-link" href="https://www.gethellobrain.com/" target="_blank" rel="noopener noreferrer">Start at gethellobrain.com</a></p>
-    </div>
-    <div class="option-card">
-      <h4>Option B — Prompt It Yourself</h4>
-      <p class="option-body">Use this prompt directly in Claude or ChatGPT. Copy and paste it below, answer the questions, and your AI tool will generate your comprehensive real estate brain.</p>
+      <h4>Option A — Prompt It Yourself</h4>
+      <p class="option-body">Use this prompt directly in Claude, ChatGPT, or your AI tool of choice. Copy and paste the prompt below, answer the questions, and your AI will generate your comprehensive real estate brain:</p>
       <div class="disclaimer brain-prompt">
         <div class="disclaimer-label">Copy and paste this prompt</div>
         <div id="brain-prompt-block"></div>
       </div>
+    </div>
+    <div class="option-card">
+      <h4>Option B — Use Hello Brain</h4>
+      <p class="option-body">A guided tool that walks you through building your brain with specific questions, step by step.</p>
+      <p class="option-body"><a class="external-link" href="https://www.gethellobrain.com/" target="_blank" rel="noopener noreferrer">Start at gethellobrain.com</a></p>
     </div>
   </div>
 
@@ -812,13 +811,13 @@
       <li>Google Drive — store and organize documents</li>
       <li>Calendar — sync with your schedule</li>
     </ol>
-    <p class="after"><strong style="color:var(--text)">Advanced Automation (When You're Ready):</strong> Once your prompts are working smoothly, connect Google Drive as a knowledge base so your AI can work independently. This transforms your AI from a tool you direct into an agent that performs tasks autonomously.</p>
+    <p class="after"><strong style="color:var(--text)">Advanced Automation (When You're Ready):</strong> Once your prompts are working smoothly, connect multiple tools to your AI — Gmail, Drive, Calendar, Notion, Slack, and more — so it has the context it needs across your entire workflow. This transforms your AI from a tool you direct into an agent that performs tasks autonomously.</p>
     <p class="after">This is where real time-savings happen: your AI no longer waits for your instruction. It reads your documents, understands your process, and executes tasks on your behalf.</p>
   </div>
 
+  <!-- Hidden section: Build Your Own
   <hr class="part-divider">
 
-  <!-- PART 4: BUILD YOUR OWN -->
   <div class="eyebrow part-eyebrow" id="build">Part 4 — Build Your Own</div>
   <h2 class="part-heading">Build Your Own</h2>
   <p class="section-intro">Use the phases above to map a task from your own business, then turn it into a prompt using the same structure as the examples.</p>
@@ -835,6 +834,7 @@
     <div id="prompt-fields"></div>
     <div class="preview-box" id="prompt-preview"></div>
   </div>
+  End hidden section: Build Your Own -->
 
   <!-- Hidden section: Download All Prompts
   <hr class="part-divider">
@@ -1299,7 +1299,7 @@ document.getElementById("quickref").innerHTML = `
 `;
 */
 
-// Part 4: connectors
+// Part 3: connectors
 const connectorHolder = document.getElementById("connectors");
 CONNECTORS.forEach(c => {
   const card = document.createElement("div");
@@ -1308,7 +1308,7 @@ CONNECTORS.forEach(c => {
   connectorHolder.appendChild(card);
 });
 
-// Part 5: build your own
+// Build Your Own (hidden — buildFieldGroup stays active, reused by the hidden wiring below)
 function buildFieldGroup(scope, fields, onChange) {
   const el = document.createElement("div");
   fields.forEach(f => {
@@ -1333,9 +1333,8 @@ function buildFieldGroup(scope, fields, onChange) {
   return el;
 }
 
-document.getElementById("workflow-fields").appendChild(buildFieldGroup("global", WORKFLOW_FIELDS));
-
-const promptPreviewHolder = document.getElementById("prompt-preview");
+// assembledPrompt() stays active (not commented) — it's a pure function with no
+// DOM dependency, reused by the hidden Download feature's markdown generation.
 function assembledPrompt() {
   const v = k => loadVal("global", k).trim();
   const role = v("pt_role") || "[role]. My voice is [tone].";
@@ -1345,12 +1344,21 @@ function assembledPrompt() {
   const example = v("pt_example") || "[example]";
   return `I am ${role}\nHere's what you'll give me: ${input}\nHere's what I need you to do: ${steps}\nImportant constraints: ${rules}\nHere's what good looks like: ${example}`;
 }
+
+// Hidden section: Build Your Own (workflow + prompt template field wiring)
+// Kept for future use — re-enable by uncommenting this block and the matching
+// HTML block ("Hidden section: Build Your Own") above.
+/*
+document.getElementById("workflow-fields").appendChild(buildFieldGroup("global", WORKFLOW_FIELDS));
+
+const promptPreviewHolder = document.getElementById("prompt-preview");
 function refreshPreview() {
   promptPreviewHolder.innerHTML = "";
   promptPreviewHolder.appendChild(buildCodeBlock("Your prompt", assembledPrompt()));
 }
 document.getElementById("prompt-fields").appendChild(buildFieldGroup("global", PROMPT_FIELDS, refreshPreview));
 refreshPreview();
+*/
 
 // Part 6: download everything
 function workflowMarkdown() {
