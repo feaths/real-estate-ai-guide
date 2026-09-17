@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Real Estate AI Guide</title>
+<title>Real Estate AI Guide — Framework to Implementation</title>
+<meta name="description" content="An interactive guide teaching real estate agents to identify repetitive tasks, turn them into AI prompts, save them, and connect them to tools like Gmail and Google Drive." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -12,18 +13,21 @@
     --bg: #FAF7F2;
     --surface: #FFFFFF;
     --text: #2C2C2C;
-    --text-60: rgba(44,44,44,.64);
-    --text-45: rgba(44,44,44,.46);
-    --text-30: rgba(44,44,44,.30);
+    --text-60: rgba(44,44,44,.72);
+    --text-45: rgba(44,44,44,.68);
+    --text-30: rgba(44,44,44,.38);
     --line: rgba(44,44,44,.09);
     --line-strong: rgba(44,44,44,.16);
+    --input-border: rgba(44,44,44,.55);
 
     --primary: #C4623A;
     --primary-strong: #A8502E;
     --primary-soft: rgba(196,98,58,.10);
     --primary-line: rgba(196,98,58,.28);
+    --btn-bg: #A8502E;
+    --btn-bg-hover: #8B3F22;
 
-    --accent: #B8842A;
+    --accent: #8A6320;
     --accent-soft: rgba(184,132,42,.12);
     --accent-line: rgba(184,132,42,.32);
 
@@ -42,10 +46,11 @@
       --surface: #252320;
       --text: #F0EDE8;
       --text-60: rgba(240,237,232,.66);
-      --text-45: rgba(240,237,232,.46);
-      --text-30: rgba(240,237,232,.28);
+      --text-45: rgba(240,237,232,.58);
+      --text-30: rgba(240,237,232,.38);
       --line: rgba(240,237,232,.10);
       --line-strong: rgba(240,237,232,.18);
+      --input-border: rgba(240,237,232,.38);
 
       --primary: #E2825C;
       --primary-strong: #EF9A76;
@@ -68,10 +73,11 @@
     --surface: #252320;
     --text: #F0EDE8;
     --text-60: rgba(240,237,232,.66);
-    --text-45: rgba(240,237,232,.46);
-    --text-30: rgba(240,237,232,.28);
+    --text-45: rgba(240,237,232,.58);
+    --text-30: rgba(240,237,232,.38);
     --line: rgba(240,237,232,.10);
     --line-strong: rgba(240,237,232,.18);
+    --input-border: rgba(240,237,232,.38);
 
     --primary: #E2825C;
     --primary-strong: #EF9A76;
@@ -109,6 +115,41 @@
   li:last-child { margin-bottom: 0; }
   ::selection { background: var(--primary-soft); }
 
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  a:focus-visible, button:focus-visible, textarea:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+
+  .skip-link {
+    position: absolute;
+    left: 16px;
+    top: -60px;
+    z-index: 100;
+    background: var(--btn-bg);
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 12px 20px;
+    border-radius: 999px;
+    text-decoration: none;
+    transition: top .15s ease;
+  }
+  .skip-link:focus {
+    top: 16px;
+  }
+
   .wrap { max-width: 800px; margin: 0 auto; padding: 0 24px; }
 
   .eyebrow {
@@ -116,7 +157,7 @@
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--primary);
+    color: var(--primary-strong);
   }
 
   /* Header */
@@ -155,7 +196,7 @@
     border-radius: 999px;
     white-space: nowrap;
   }
-  .toc a:hover { color: var(--primary); background: var(--primary-soft); }
+  .toc a:hover { color: var(--primary-strong); background: var(--primary-soft); }
 
   /* Hero / Part 1 */
   .hero { padding: 52px 0 8px; }
@@ -256,7 +297,7 @@
     font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--primary);
+    color: var(--primary-strong);
     margin-bottom: 8px;
   }
   .disclaimer p {
@@ -282,7 +323,7 @@
     padding: 7px 13px;
     border-radius: 999px;
   }
-  .fn-nav a:hover { border-color: var(--primary); color: var(--primary); }
+  .fn-nav a:hover { border-color: var(--primary); color: var(--primary-strong); }
 
   /* Function accordion */
   .functions { display: flex; flex-direction: column; gap: 14px; margin-bottom: 8px; }
@@ -310,7 +351,7 @@
   .fn-toggle:focus-visible { outline: 2px solid var(--primary); outline-offset: -2px; }
   .fn-idx { font-family: "DM Serif Display", serif; font-size: 1.6rem; color: var(--primary); flex: none; width: 34px; }
   .fn-heading { flex: 1; min-width: 0; }
-  .fn-heading h2 { font-size: 1.3rem; }
+  .fn-heading h3 { font-size: 1.3rem; }
   .fn-heading p { color: var(--text-60); font-size: 0.92rem; margin-top: 4px; }
   .chevron { flex: none; width: 20px; height: 20px; color: var(--text-30); transition: transform .2s ease; }
   .fn-card[data-open="true"] .chevron { transform: rotate(180deg); }
@@ -334,10 +375,10 @@
     flex: none;
     max-width: 100%;
   }
-  .level-block.l1 .level-chip { color: var(--primary); background: var(--primary-soft); border: 1px solid var(--primary-line); }
+  .level-block.l1 .level-chip { color: var(--primary-strong); background: var(--primary-soft); border: 1px solid var(--primary-line); }
   .level-block.l2 .level-chip { color: var(--accent); background: var(--accent-soft); border: 1px solid var(--accent-line); }
-  .level-block h3 { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 1.02rem; font-weight: 700; }
-  .level-block h3 .parens { font-weight: 500; color: var(--text-45); }
+  .level-block h4 { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 1.02rem; font-weight: 700; margin: 0; }
+  .level-block h4 .parens { font-weight: 500; color: var(--text-45); }
 
   .code-block {
     margin-top: 14px;
@@ -353,7 +394,7 @@
     padding: 9px 14px;
     border-bottom: 1px solid var(--code-line);
   }
-  .code-block-head span { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(241,233,221,.5); }
+  .code-block-head span { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(241,233,221,.55); }
   .copy-btn {
     display: inline-flex;
     align-items: center;
@@ -389,7 +430,7 @@
     padding-left: 14px;
     border-left: 2px solid var(--primary-line);
   }
-  .benefit b { color: var(--text); font-weight: 600; }
+  .benefit strong { color: var(--text); font-weight: 600; }
 
   /* Terminology (Part 3) */
   .term-list { margin-top: 22px; display: flex; flex-direction: column; gap: 14px; }
@@ -399,11 +440,11 @@
     border-radius: var(--radius-md);
     padding: 18px 20px;
   }
-  .term-card h4 { font-family: -apple-system, sans-serif; font-size: 0.98rem; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  .term-card h3 { font-family: -apple-system, sans-serif; font-size: 0.98rem; font-weight: 700; color: var(--text); margin-bottom: 4px; }
   .term-card .means { font-size: 0.88rem; color: var(--text-60); margin-bottom: 12px; }
   .term-rows { display: flex; flex-direction: column; gap: 6px; }
   .term-row { display: flex; gap: 10px; font-size: 0.86rem; }
-  .term-row .tool { flex: none; width: 108px; font-weight: 600; color: var(--primary); }
+  .term-row .tool { flex: none; width: 108px; font-weight: 600; color: var(--primary-strong); }
   .term-row .val { color: var(--text-60); }
 
   .options-grid { margin-top: 22px; display: flex; flex-direction: column; gap: 14px; }
@@ -413,10 +454,10 @@
     border-radius: var(--radius-md);
     padding: 20px 22px;
   }
-  .option-card h4 { font-family: "DM Serif Display", serif; font-weight: 400; font-size: 1.08rem; margin-bottom: 8px; }
+  .option-card h3 { font-family: "DM Serif Display", serif; font-weight: 400; font-size: 1.08rem; margin-bottom: 8px; }
   .option-card ul { font-size: 0.9rem; color: var(--text-60); }
   .option-card .best-for { margin-top: 10px; font-size: 0.85rem; color: var(--text-45); }
-  .option-card .best-for b { color: var(--text-60); font-weight: 600; }
+  .option-card .best-for strong { color: var(--text-60); font-weight: 600; }
 
   .quickref {
     margin-top: 22px;
@@ -464,12 +505,12 @@
     border-radius: var(--radius-md);
     padding: 18px 20px;
   }
-  .connector-card h4 { font-family: -apple-system, sans-serif; font-weight: 700; font-size: 0.96rem; margin-bottom: 8px; }
+  .connector-card h3 { font-family: -apple-system, sans-serif; font-weight: 700; font-size: 0.96rem; margin-bottom: 8px; }
   .connector-card p { font-size: 0.85rem; color: var(--text-60); margin-bottom: 6px; }
-  .connector-card p b { color: var(--text); font-weight: 600; }
+  .connector-card p strong { color: var(--text); font-weight: 600; }
 
   .steplist { margin-top: 22px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .steplist-col h4 { font-size: 0.94rem; font-family: -apple-system, sans-serif; font-weight: 700; margin-bottom: 8px; }
+  .steplist-col h3 { font-size: 0.94rem; font-family: -apple-system, sans-serif; font-weight: 700; margin-bottom: 8px; }
   .steplist-col ol { font-size: 0.88rem; color: var(--text-60); padding-left: 1.1em; }
   .steplist-col .path { font-family: "JetBrains Mono", monospace; font-size: 0.82rem; color: var(--text-60); }
 
@@ -480,6 +521,7 @@
     border-radius: var(--radius-lg);
     padding: 20px 22px;
   }
+  .start-card h3 { font-size: 1.1rem; }
   .start-card p.lead { font-size: 0.92rem; color: var(--text-60); margin-bottom: 12px; }
   .start-card ol { font-size: 0.92rem; color: var(--text); padding-left: 1.2em; }
   .start-card p.after { margin-top: 12px; font-size: 0.88rem; color: var(--text-60); }
@@ -507,11 +549,15 @@
     line-height: 1.5;
     color: var(--text);
     background: var(--bg);
-    border: 1px solid var(--line-strong);
+    border: 1px solid var(--input-border);
     border-radius: 10px;
     padding: 10px 12px;
   }
-  .field textarea:focus { outline: none; border-color: var(--primary); }
+  .field textarea:focus-visible, .field textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--primary-soft);
+  }
   .field textarea::placeholder { color: var(--text-30); }
 
   .preview-box { margin-top: 16px; }
@@ -530,12 +576,12 @@
     flex-wrap: wrap;
   }
   .download-card p { font-size: 0.92rem; color: var(--text-60); max-width: 420px; }
-  .download-card p b { color: var(--text); font-weight: 600; }
+  .download-card p strong { color: var(--text); font-weight: 600; }
   .btn-primary {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: var(--primary);
+    background: var(--btn-bg);
     color: #fff;
     font-weight: 600;
     font-size: 0.92rem;
@@ -546,7 +592,7 @@
     transition: background .15s;
     white-space: nowrap;
   }
-  .btn-primary:hover { background: var(--primary-strong); }
+  .btn-primary:hover { background: var(--btn-bg-hover); }
   .btn-primary svg { width: 16px; height: 16px; }
 
   footer.site { border-top: 1px solid var(--line); padding: 34px 0 46px; }
@@ -567,15 +613,17 @@
     .download-card { flex-direction: column; align-items: flex-start; padding: 26px 22px; }
     .btn-primary { width: 100%; justify-content: center; white-space: normal; text-align: center; line-height: 1.3; }
     .toc { display: none; }
-    .option-card h4 { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+    .option-card h3 { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
   }
 </style>
 </head>
 <body>
 
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
 <header class="site">
   <div class="header-inner">
-    <svg class="bulb" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <svg class="bulb" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Hello Brain icon">
       <circle cx="16" cy="13" r="9" fill="var(--primary)"/>
       <rect x="13" y="18" width="6" height="12" rx="2" fill="var(--primary)"/>
       <path d="M16 2.5V0.5M25 6.5L26.5 5M7 6.5L5.5 5" stroke="var(--primary)" stroke-width="1.6" stroke-linecap="round"/>
@@ -584,7 +632,7 @@
       <div class="brand-name">Real Estate AI Guide</div>
       <div class="brand-sub">Framework to Implementation</div>
     </div>
-    <nav class="toc" aria-label="Guide sections">
+    <nav class="toc" role="navigation" aria-label="Guide sections">
       <a href="#framework">Framework</a>
       <a href="#functions-top">Functions</a>
       <a href="#save">Save</a>
@@ -595,7 +643,7 @@
   </div>
 </header>
 
-<div class="wrap">
+<div class="wrap" id="main-content">
 
   <!-- PART 1: FRAMEWORK -->
   <section class="hero" id="framework">
@@ -604,10 +652,10 @@
     <p class="lede">This guide teaches you how to identify repetitive tasks in your real estate business, turn them into AI prompts, and integrate them into your daily workflow. By the end, you'll have multiple AI-powered systems handling routine work so you can focus on client relationships.</p>
 
     <div class="learn-list">
-      <div class="row"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5L8 14.5L16 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Turn a repetitive task into a working AI prompt</div>
-      <div class="row"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5L8 14.5L16 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Save that prompt so you're never rewriting it from scratch</div>
-      <div class="row"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5L8 14.5L16 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Connect it to tools you already use — Gmail, Drive, Calendar</div>
-      <div class="row"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5L8 14.5L16 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Build your own version for tasks beyond the four examples here</div>
+      <div class="row"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10.5L8 14.5L16 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Turn a repetitive task into a working AI prompt</div>
+      <div class="row"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10.5L8 14.5L16 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Save that prompt so you're never rewriting it from scratch</div>
+      <div class="row"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10.5L8 14.5L16 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Connect it to tools you already use — Gmail, Drive, Calendar</div>
+      <div class="row"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10.5L8 14.5L16 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Build your own version for tasks beyond the four examples here</div>
     </div>
   </section>
 
@@ -636,6 +684,7 @@
   </div>
 
   <div class="principle">
+    <h2 class="sr-only">Key Principle</h2>
     <p class="statement">You can't automate what you haven't clarified.</p>
     <p class="sub">The examples below show what's possible. Your job is to adapt them to your voice and market.</p>
   </div>
@@ -646,7 +695,7 @@
   <div class="eyebrow part-eyebrow" id="functions-top">Part 2 — Real Estate Functions</div>
   <h2 class="part-heading">Real Estate Functions</h2>
   <p class="section-intro">Four functions where agents get the fastest return on AI. Each one shows a Level 1 prompt you can use today and a Level 2 template you build once and reuse.</p>
-  <nav class="fn-nav" aria-label="Jump to function">
+  <nav class="fn-nav" role="navigation" aria-label="Jump to function">
     <a href="#marketing">Marketing &amp; Listing Promotion</a>
     <a href="#leads">Lead Management &amp; Nurturing</a>
     <a href="#communication">Client Communication</a>
@@ -695,7 +744,7 @@
 
   <div class="steplist">
     <div class="steplist-col">
-      <h4>How to Add Connectors — In Claude</h4>
+      <h3>How to Add Connectors — In Claude</h3>
       <ol>
         <li>Go to Settings &gt; Connectors (or "Connected Apps")</li>
         <li>Browse available connectors</li>
@@ -705,21 +754,21 @@
       </ol>
     </div>
     <div class="steplist-col">
-      <h4>ChatGPT / Other Tools</h4>
+      <h3>ChatGPT / Other Tools</h3>
       <p class="path">Settings &gt; Integrations / Connectors / Third-Party Apps</p>
       <ol style="margin-top:10px"><li>Process is similar: connect, authorize, and start using.</li></ol>
     </div>
   </div>
 
   <div class="start-card">
-    <p class="lead"><b style="color:var(--text)">The Progression</b></p>
-    <p class="lead" style="margin-top:2px"><b style="color:var(--text)">Basic Automation (Start Here):</b></p>
+    <h3>The Progression</h3>
+    <p class="lead" style="margin-top:14px"><strong style="color:var(--text)">Basic Automation (Start Here):</strong></p>
     <ol>
       <li>Gmail — auto-respond, auto-categorize</li>
       <li>Google Drive — store and organize documents</li>
       <li>Calendar — sync with your schedule</li>
     </ol>
-    <p class="after"><b style="color:var(--text)">Advanced Automation (When You're Ready):</b> Once your prompts are working smoothly, connect Google Drive as a knowledge base so your AI can work independently. This transforms your AI from a tool you direct into an agent that performs tasks autonomously.</p>
+    <p class="after"><strong style="color:var(--text)">Advanced Automation (When You're Ready):</strong> Once your prompts are working smoothly, connect Google Drive as a knowledge base so your AI can work independently. This transforms your AI from a tool you direct into an agent that performs tasks autonomously.</p>
     <p class="after">This is where real time-savings happen: your AI no longer waits for your instruction. It reads your documents, understands your process, and executes tasks on your behalf.</p>
   </div>
 
@@ -749,7 +798,7 @@
   <div class="eyebrow part-eyebrow" id="download">Part 6 — Download</div>
   <h2 class="part-heading">Download</h2>
   <div class="download-card">
-    <p>Every example prompt from Part 2, plus <b>your</b> workflow map and prompt template from Part 5 — all in one file.</p>
+    <p>Every example prompt from Part 2, plus <strong>your</strong> workflow map and prompt template from Part 5 — all in one file.</p>
     <button type="button" class="btn-primary" id="downloadAllBtn"></button>
   </div>
 
@@ -1043,9 +1092,9 @@ function saveVal(scope, fieldKey, value) {
   try { localStorage.setItem(storageKey(scope, fieldKey), value); } catch (e) {}
 }
 
-const copyIconSVG = '<svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="7" y="7" width="10" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M13 7V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" stroke="currentColor" stroke-width="1.5"/></svg>';
-const checkIconSVG = '<svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 10.5L8 14.5L16 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-const downloadIconSVG = '<svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 3v10m0 0l-4-4m4 4l4-4M4 16h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const copyIconSVG = '<svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="7" y="7" width="10" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M13 7V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" stroke="currentColor" stroke-width="1.5"/></svg>';
+const checkIconSVG = '<svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M4 10.5L8 14.5L16 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const downloadIconSVG = '<svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M10 3v10m0 0l-4-4m4 4l4-4M4 16h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 const chevronSVG = '<svg class="chevron" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
 async function copyText(text, btn) {
@@ -1096,17 +1145,17 @@ function buildLevelBlock(kind, num, levelData) {
   const chip = document.createElement("span");
   chip.className = "level-chip";
   chip.textContent = `Level ${num}`;
-  const h3 = document.createElement("h3");
-  h3.innerHTML = `${levelData.heading} <span class="parens">(${levelData.parens})</span>`;
+  const h4 = document.createElement("h4");
+  h4.innerHTML = `${levelData.heading} <span class="parens">(${levelData.parens})</span>`;
   head.appendChild(chip);
-  head.appendChild(h3);
+  head.appendChild(h4);
   el.appendChild(head);
 
   el.appendChild(buildCodeBlock("Example Prompt — copy and paste", levelData.prompt));
 
   const benefit = document.createElement("div");
   benefit.className = "benefit";
-  benefit.innerHTML = "<b>Benefit:</b> ";
+  benefit.innerHTML = "<strong>Benefit:</strong> ";
   benefit.appendChild(document.createTextNode(levelData.benefit));
   el.appendChild(benefit);
 
@@ -1120,15 +1169,17 @@ DATA.forEach((fn, idx) => {
   card.id = fn.id;
   card.dataset.open = "false";
 
+  const panelId = `${fn.id}-panel`;
   const toggle = document.createElement("button");
   toggle.type = "button"; toggle.className = "fn-toggle";
   toggle.setAttribute("aria-expanded", "false");
+  toggle.setAttribute("aria-controls", panelId);
   toggle.innerHTML = `
     <span class="fn-idx">${String(idx + 1).padStart(2, "0")}</span>
-    <span class="fn-heading"><h2></h2><p></p></span>
+    <span class="fn-heading"><h3></h3><p></p></span>
     ${chevronSVG}
   `;
-  toggle.querySelector("h2").textContent = fn.name;
+  toggle.querySelector("h3").textContent = fn.name;
   toggle.querySelector("p").textContent = fn.overview;
   toggle.addEventListener("click", () => {
     const isOpen = card.dataset.open === "true";
@@ -1138,6 +1189,7 @@ DATA.forEach((fn, idx) => {
 
   const body = document.createElement("div");
   body.className = "fn-body";
+  body.id = panelId;
   const bodyInner = document.createElement("div");
   bodyInner.className = "fn-body-inner";
   const content = document.createElement("div");
@@ -1172,7 +1224,7 @@ TERMINOLOGY.forEach(t => {
   const card = document.createElement("div");
   card.className = "term-card";
   const rows = t.rows.map(r => `<div class="term-row"><span class="tool">${r[0]}</span><span class="val">${r[1]}</span></div>`).join("");
-  card.innerHTML = `<h4>${t.title}</h4><p class="means">${t.means}</p><div class="term-rows">${rows}</div>`;
+  card.innerHTML = `<h3>${t.title}</h3><p class="means">${t.means}</p><div class="term-rows">${rows}</div>`;
   termHolder.appendChild(card);
 });
 
@@ -1181,8 +1233,8 @@ SAVE_OPTIONS.forEach(o => {
   const card = document.createElement("div");
   card.className = "option-card";
   const items = o.items.map(i => `<li>${i}</li>`).join("");
-  const exampleHTML = o.example ? `<p class="best-for" style="margin-top:6px"><b>Example:</b> ${o.example}</p>` : "";
-  card.innerHTML = `<h4>${o.title} <span class="level-chip" style="color:var(--accent);background:var(--accent-soft);border:1px solid var(--accent-line)">${o.tag}</span></h4><ul>${items}</ul><p class="best-for"><b>Best for:</b> ${o.bestFor}</p>${exampleHTML}`;
+  const exampleHTML = o.example ? `<p class="best-for" style="margin-top:6px"><strong>Example:</strong> ${o.example}</p>` : "";
+  card.innerHTML = `<h3>${o.title} <span class="level-chip" style="color:var(--accent);background:var(--accent-soft);border:1px solid var(--accent-line)">${o.tag}</span></h3><ul>${items}</ul><p class="best-for"><strong>Best for:</strong> ${o.bestFor}</p>${exampleHTML}`;
   optionsHolder.appendChild(card);
 });
 
@@ -1197,7 +1249,7 @@ const connectorHolder = document.getElementById("connectors");
 CONNECTORS.forEach(c => {
   const card = document.createElement("div");
   card.className = "connector-card";
-  card.innerHTML = `<h4>${c.name}</h4><p><b>What it does:</b> ${c.does}</p><p><b>Why it matters:</b> ${c.why}</p>`;
+  card.innerHTML = `<h3>${c.name}</h3><p><strong>What it does:</strong> ${c.does}</p><p><strong>Why it matters:</strong> ${c.why}</p>`;
   connectorHolder.appendChild(card);
 });
 
@@ -1207,9 +1259,12 @@ function buildFieldGroup(scope, fields, onChange) {
   fields.forEach(f => {
     const field = document.createElement("div");
     field.className = "field";
+    const fieldId = `field-${scope}-${f.key}`;
     const label = document.createElement("label");
     label.textContent = f.label;
+    label.setAttribute("for", fieldId);
     const textarea = document.createElement("textarea");
+    textarea.id = fieldId;
     textarea.placeholder = f.placeholder;
     textarea.value = loadVal(scope, f.key);
     textarea.addEventListener("input", () => {
