@@ -243,6 +243,28 @@
     color: var(--text-60);
   }
 
+  .disclaimer {
+    margin: 0 0 34px;
+    background: var(--primary-soft);
+    border: 1px solid var(--primary-line);
+    border-left: 4px solid var(--primary);
+    border-radius: var(--radius-lg);
+    padding: 20px 24px;
+  }
+  .disclaimer-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin-bottom: 8px;
+  }
+  .disclaimer p {
+    font-size: 0.92rem;
+    color: var(--text);
+    line-height: 1.55;
+  }
+
   /* Part 2 nav */
   .fn-nav {
     margin: 8px 0 26px;
@@ -527,9 +549,14 @@
   .btn-primary:hover { background: var(--primary-strong); }
   .btn-primary svg { width: 16px; height: 16px; }
 
-  footer.site { border-top: 1px solid var(--line); padding: 30px 0 46px; }
+  footer.site { border-top: 1px solid var(--line); padding: 34px 0 46px; }
   footer.site p { font-size: 0.85rem; color: var(--text-45); }
-  footer.site .updated { font-weight: 600; color: var(--text-60); margin-bottom: 6px; }
+  footer.site .updated { font-weight: 600; color: var(--text-60); margin-top: 20px; }
+  footer.site h2 { font-size: 1.25rem; margin-bottom: 10px; }
+  footer.site .footer-intro { color: var(--text-60); margin-bottom: 12px; }
+  footer.site ul { margin: 0; padding-left: 1.2em; }
+  footer.site li { font-size: 0.85rem; color: var(--text-45); margin-bottom: 8px; line-height: 1.5; }
+  footer.site li:last-child { margin-bottom: 0; }
 
   @media (max-width: 640px) {
     .phase-grid { grid-template-columns: 1fr; }
@@ -644,6 +671,11 @@
 
   <hr class="part-divider">
 
+  <div class="disclaimer">
+    <div class="disclaimer-label">Before you connect anything</div>
+    <p>This guide is educational. Security requirements vary by organization. You are responsible for evaluating whether each tool meets your specific security, compliance, and business needs before implementation.</p>
+  </div>
+
   <!-- PART 4: CONNECT YOUR TOOLS -->
   <div class="eyebrow part-eyebrow" id="connect">Part 4 — Connect Your Tools</div>
   <h2 class="part-heading">Connect Your Tools</h2>
@@ -726,8 +758,16 @@
 
 <footer class="site">
   <div class="wrap">
-    <p class="updated">Last updated September 16, 2026</p>
-    <p>A living guide — Transaction Management, Market Analysis, and Admin &amp; Operations will be added as they're built out. Work through one function at a time.</p>
+    <h2>Security &amp; Data Protection Considerations</h2>
+    <p class="footer-intro">Before connecting any external tools or systems to your business, review these practices:</p>
+    <ul>
+      <li>Evaluate each tool's security certifications and data handling policies (look for SOC 2, GDPR, or HIPAA compliance depending on your needs)</li>
+      <li>Consult with your IT team or business manager about integration risks, especially if the tool will access client information or property data</li>
+      <li>Verify the tool complies with your brokerage's data security protocols and any applicable regulations (MLS rules, Fair Housing Act, state licensing requirements)</li>
+      <li>Understand how your data will be stored, who has access to it, and how to delete it if needed</li>
+      <li>Test connections in a low-risk environment before full implementation</li>
+    </ul>
+    <p class="updated">Last updated September 17, 2026</p>
   </div>
 </footer>
 
