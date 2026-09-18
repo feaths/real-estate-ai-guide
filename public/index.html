@@ -530,7 +530,7 @@
   .steplist-col .path { font-family: "JetBrains Mono", monospace; font-size: 0.82rem; color: var(--text-60); }
 
   .start-card {
-    margin-top: 22px;
+    margin-top: 62px;
     background: var(--accent-soft);
     border: 1px solid var(--accent-line);
     border-radius: var(--radius-lg);
@@ -852,7 +852,7 @@
 <footer class="site">
   <div class="wrap">
     <h2>Security &amp; Data Protection Considerations</h2>
-    <p class="footer-intro">Before connecting any external tools or systems to your business, review these practices:</p>
+    <p class="footer-intro">This guide is educational. Security requirements vary by organization. You are responsible for evaluating whether each tool meets your specific security, compliance, and business needs before implementation. Before connecting any external tools or systems to your business, review these practices:</p>
     <ul>
       <li>Evaluate each tool's security certifications and data handling policies (look for SOC 2, GDPR, or HIPAA compliance depending on your needs)</li>
       <li>Consult with your IT team or business manager about integration risks, especially if the tool will access client information or property data</li>
@@ -871,6 +871,7 @@ const DATA = [
     id: "marketing",
     name: "Marketing & Listing Promotion",
     overview: "Creating compelling content across multiple channels. This is where AI saves the most time because you repeat the same patterns daily.",
+    expandedIntro: "Use AI to create and automate your marketing and listing content across channels.",
     l1: {
       heading: "Write a Single Piece", parens: "Manual AI Use",
       prompt: `You are a real estate agent writing a social media caption for a property listing. Your voice is warm, approachable, and encouraging. You focus on how homes make people feel.
@@ -923,6 +924,7 @@ Reference this listing as an example of your style: [paste a listing you've writ
     id: "leads",
     name: "Lead Management & Nurturing",
     overview: "Organizing incoming leads and keeping them engaged. This is where AI helps you stay on top of pipeline without constant manual sorting.",
+    expandedIntro: "Use AI to track, organize, and nurture leads automatically.",
     l1: {
       heading: "Organize and Prioritize", parens: "Manual AI Use",
       prompt: `You are helping a real estate agent organize their incoming leads.
@@ -961,6 +963,7 @@ Example lead: [describe a typical lead scenario]`,
     id: "communication",
     name: "Client Communication",
     overview: "Handling emails, questions, and status updates throughout transactions. This is the routine communication that takes hours but follows predictable patterns.",
+    expandedIntro: "Use AI to manage client conversations and automate routine communication.",
     l1: {
       heading: "Draft Client Emails", parens: "Manual AI Use",
       prompt: `You are drafting professional yet warm client emails on behalf of a real estate agent.
@@ -1003,6 +1006,7 @@ Example transaction stage: [describe what stage these questions typically come u
     id: "prospecting",
     name: "Prospecting & Lead Generation",
     overview: "Reaching out to your network strategically. This is where AI helps you maintain relationships and identify genuine opportunities without constant guesswork.",
+    expandedIntro: "Use AI to identify prospects and qualify leads systematically.",
     l1: {
       heading: "Qualify Your Network", parens: "Manual AI Use",
       prompt: `You are helping a real estate agent qualify their sphere leads.
@@ -1248,7 +1252,7 @@ DATA.forEach((fn, idx) => {
 
   const overview = document.createElement("p");
   overview.className = "overview-text";
-  overview.textContent = fn.overview;
+  overview.textContent = fn.expandedIntro;
   content.appendChild(overview);
 
   content.appendChild(buildLevelBlock("l1", 1, fn.l1));
