@@ -764,20 +764,20 @@
 
   <div class="disclaimer">
     <div class="disclaimer-label">Before you connect anything</div>
-    <p>This guide is educational. Security requirements vary by organization. You are responsible for evaluating whether each tool meets your specific security, compliance, and business needs before implementation.</p>
+    <p>This guide is educational. You are responsible for evaluating whether each tool meets your specific security, compliance, and business needs before implementation.</p>
   </div>
 
   <!-- PART 3: CONNECT YOUR TOOLS -->
   <div class="eyebrow part-eyebrow" id="connect">Part 3 — Connect Your Tools</div>
   <h2 class="part-heading">Connect Your Tools</h2>
   <p class="section-intro">Once your prompts are trained and working, the next step is connecting them to your actual workflow. This is where automation gets powerful.</p>
-  <p class="section-intro" style="margin-top:14px">A connector is a link between your AI tool and another application (like Gmail, Google Drive, Canva, etc.). Instead of manually copying information, the connector pulls data from your tools, sends it to AI for processing, and puts the results back where you need them.</p>
+  <p class="section-intro" style="margin-top:14px">Integrations, plugins, or add-ons (depending on your AI tool) link your AI tool to another application, like Gmail, Google Drive, or Canva. Instead of manually copying information, they pull data from your tools, send it to AI for processing, and put the results back where you need them.</p>
 
   <div class="flow">
-    <div class="flow-title">Example — Gmail Connector with Claude</div>
+    <div class="flow-title">Example — Gmail Integration with Claude</div>
     <div class="flow-steps">
       <div class="flow-step"><span class="n">1</span>New email arrives in your inbox</div>
-      <div class="flow-step"><span class="n">2</span>Gmail connector pulls it to Claude</div>
+      <div class="flow-step"><span class="n">2</span>Gmail integration pulls it to Claude</div>
       <div class="flow-step"><span class="n">3</span>Claude processes it using your trained prompt</div>
       <div class="flow-step"><span class="n">4</span>Result goes back to Gmail — auto-labels, auto-responds, etc.</div>
     </div>
@@ -787,10 +787,10 @@
 
   <div class="steplist">
     <div class="steplist-col">
-      <h3>How to Add Connectors — In Claude</h3>
+      <h3>How to Add Integrations — In Claude</h3>
       <ol>
         <li>Go to Settings &gt; Connectors (or "Connected Apps")</li>
-        <li>Browse available connectors</li>
+        <li>Browse available integrations</li>
         <li>Click the tool you want to connect</li>
         <li>Follow the authorization steps</li>
         <li>Once connected, your prompts can use that tool</li>
@@ -864,7 +864,19 @@
 </footer>
 
 <script>
-const BRAIN_PROMPT = `I want you to ask me a detailed series of questions to fully understand who I am, my business, my market, my numbers, my systems, my tool stack, my processes, my voice, my rules, and my philosophies. I also want you to understand where I've been, where I am now, and where I want to go. Once you have enough information, create a comprehensive personal wiki for me.`;
+const BRAIN_PROMPT = `Let's build my brain. A personal reference guide that captures who I am, how I think, and how I work.
+
+Guide me through building organized sections of my brain, starting with my voice and philosophy, then moving into my business operations. This will become a living document I can edit and refine over time, and ultimately upload or paste into any AI tool as my source of truth.
+
+Build these sections:
+
+1. My Philosophy & Voice (How I think, what I believe, how I communicate)
+2. My Business & Market (What I do, who I serve, my market position)
+3. My Processes & Systems (How I work, my tools, my workflows)
+4. My Results & Proof (What works, my metrics, my track record)
+5. My Rules & Principles (What I stand for, what I won't compromise on)
+
+Ask me clarifying questions as we go to build this conversationally so my brain actually sounds like me. Focus on who I am now, not who I want to become.`;
 
 const DATA = [
   {
@@ -1098,7 +1110,7 @@ const SAVE_OPTIONS = [
     tag: "Advanced — agentic automation",
     items: [
       "Store your prompts and reference documents in Google Drive",
-      "Connect your AI tool (Claude, ChatGPT, etc.) to Google Drive via connectors",
+      "Connect your AI tool (Claude, ChatGPT, etc.) to Google Drive via integrations, plugins, or add-ons (depending on your AI tool)",
       "The AI can now read your documents, reference your templates, and perform tasks autonomously",
       "Advantage: AI becomes truly agentic — it can retrieve context, make decisions, and execute tasks without you re-explaining each time"
     ],
@@ -1108,11 +1120,11 @@ const SAVE_OPTIONS = [
 ];
 
 const CONNECTORS = [
-  { name: "Gmail Connector", does: "Pull incoming emails, auto-respond, auto-categorize, generate responses.", why: "You never manually copy/paste client emails into your AI tool again." },
-  { name: "Google Drive Connector", does: "Pull documents, generate from templates, save results to Drive.", why: "Your processes stay organized in Drive while AI handles the heavy lifting." },
-  { name: "Google Calendar Connector", does: "Read your calendar, schedule follow-ups, generate notes from events.", why: "AI stays in sync with your schedule and can auto-schedule tasks." },
-  { name: "Canva Connector", does: "Generate listing graphics, create marketing images using your templates.", why: "AI speeds up your design work without learning Canva." },
-  { name: "Trello Connector", does: "Move tasks through your pipeline automatically, trigger actions when cards move.", why: "Your AI keeps Trello updated as work progresses." }
+  { name: "Gmail Integration", does: "Pull incoming emails, auto-respond, auto-categorize, generate responses.", why: "You never manually copy/paste client emails into your AI tool again." },
+  { name: "Google Drive Integration", does: "Pull documents, generate from templates, save results to Drive.", why: "Your processes stay organized in Drive while AI handles the heavy lifting." },
+  { name: "Google Calendar Integration", does: "Read your calendar, schedule follow-ups, generate notes from events.", why: "AI stays in sync with your schedule and can auto-schedule tasks." },
+  { name: "Canva Integration", does: "Generate listing graphics, create marketing images using your templates.", why: "AI speeds up your design work without learning Canva." },
+  { name: "Trello Integration", does: "Move tasks through your pipeline automatically, trigger actions when cards move.", why: "Your AI keeps Trello updated as work progresses." }
 ];
 
 const WORKFLOW_FIELDS = [
