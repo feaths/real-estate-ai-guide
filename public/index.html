@@ -689,7 +689,7 @@
     </div>
     <div class="option-card">
       <h4>Option B — Use Hello Brain</h4>
-      <p class="option-body">A guided tool that walks you through building your brain with specific questions, step by step.</p>
+      <p class="option-body">A guided tool that walks you through building your brain step by step. Use this to get started quickly, then add to your brain over time as you refine your processes.</p>
       <p class="option-body"><a class="external-link" href="https://www.gethellobrain.com/" target="_blank" rel="noopener noreferrer">Start at gethellobrain.com</a></p>
     </div>
   </div>
@@ -704,22 +704,22 @@
   <h2 class="part-heading">The 4-Phase Framework</h2>
   <div class="phase-grid">
     <div class="phase-card">
-      <div class="phase-num">01</div>
+      <div class="phase-num">1</div>
       <h3>Pick Your First Task</h3>
       <p>Choose one task you do repeatedly that takes time and follows a clear pattern.</p>
     </div>
     <div class="phase-card">
-      <div class="phase-num">02</div>
+      <div class="phase-num">2</div>
       <h3>Map Your Workflow</h3>
       <p>Document exactly how you do it: your input, process, voice, constraints, and quality standards.</p>
     </div>
     <div class="phase-card">
-      <div class="phase-num">03</div>
+      <div class="phase-num">3</div>
       <h3>Build Your Prompt and Test and Refine It</h3>
       <p>Turn your workflow into clear instructions for AI, then test it with real data and adjust until it consistently works.</p>
     </div>
     <div class="phase-card">
-      <div class="phase-num">04</div>
+      <div class="phase-num">4</div>
       <h3>Use Your Prompt and Automate It</h3>
       <p>Once it's working, use it every time you need that task done — then look for ways to save it and connect it so it runs with less input from you.</p>
     </div>
@@ -1230,7 +1230,7 @@ DATA.forEach((fn, idx) => {
   toggle.setAttribute("aria-expanded", "false");
   toggle.setAttribute("aria-controls", panelId);
   toggle.innerHTML = `
-    <span class="fn-idx">${String(idx + 1).padStart(2, "0")}</span>
+    <span class="fn-idx">${idx + 1}</span>
     <span class="fn-heading"><h3></h3><p></p></span>
     ${chevronSVG}
   `;
